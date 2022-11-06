@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Button",
+"class": "ScaledButton",
+"language": "GDScript",
+"path": "res://global/ScaledButtonClass.gd"
+} ]
+_global_script_class_icons={
+"ScaledButton": ""
+}
+
 [application]
 
 config/name="Smash"
@@ -15,6 +25,10 @@ run/main_scene="res://scenes/gameplay/Game.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://global/Global.gd"
 
 [display]
 
