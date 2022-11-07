@@ -32,10 +32,16 @@ __meta__ = {
 }
 
 [node name="ScaledButton" type="Button" parent="CanvasLayer"]
-anchor_left = 0.188889
-anchor_top = 0.459375
-anchor_right = 0.383333
-anchor_bottom = 0.590625
+anchor_left = 0.0833333
+anchor_top = 0.41875
+anchor_right = 0.505556
+anchor_bottom = 0.655469
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 1 )
+flat = true
+icon_align = 1
+expand_icon = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true

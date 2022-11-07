@@ -2,8 +2,8 @@ extends Button
 class_name ScaledButton
 
 
-export(float, 0.5, 1.5, 0.05) var focus_scale: float = 1.15
-export(float, 0.5, 1.5, 0.05) var press_scale: float = 0.75
+export(float, 0.5, 1.5, 0.05) var focus_scale: float = 1.075
+export(float, 0.5, 1.5, 0.05) var press_scale: float = 0.85
 export(float, 0.5, 1.5, 0.05) var anim_speed: float = 1.0
 
 var target_scale: Vector2 = Vector2(1.0, 1.0)
@@ -22,8 +22,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if self.rect_scale.x != target_scale.x:
 		self.rect_scale = lerp(self.rect_scale, target_scale, Global.lerp_index)
-	else:
-		print(Global.time)
 
 
 func _pressed() -> void:
