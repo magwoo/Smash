@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
 [ext_resource path="res://resources/images/SwitchPlayerIcon2.svg" type="Texture" id=3]
 [ext_resource path="res://resources/images/Player.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/interfaces/HighScoreText.gd" type="Script" id=5]
 [ext_resource path="res://resources/images/PlayIcon.svg" type="Texture" id=6]
 [ext_resource path="res://resources/images/SettingsIcon.svg" type="Texture" id=7]
 [ext_resource path="res://resources/images/HighScoreIcon.svg" type="Texture" id=8]
 [ext_resource path="res://resources/themes/DefaultTheme.tres" type="Theme" id=9]
 [ext_resource path="res://resources/images/BalanceIcon.svg" type="Texture" id=10]
+[ext_resource path="res://scenes/interfaces/BalanceText.gd" type="Script" id=11]
+[ext_resource path="res://scenes/interfaces/PlayButton.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.0980392 )
@@ -19,6 +22,13 @@ corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.709804, 0.372549, 1 )
 corner_radius_top_left = 48
 corner_radius_top_right = 48
 corner_radius_bottom_right = 48
@@ -36,13 +46,13 @@ custom_constants/margin_left = 32
 
 [node name="MainVBox" type="VBoxContainer" parent="MainMargin"]
 margin_left = 32.0
-margin_right = 691.0
+margin_right = 688.0
 margin_bottom = 1280.0
 
 [node name="Info" type="MarginContainer" parent="MainMargin/MainVBox"]
-margin_top = 6.0
-margin_right = 659.0
-margin_bottom = 146.0
+margin_top = 8.0
+margin_right = 656.0
+margin_bottom = 148.0
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.5
 custom_constants/margin_right = 32
@@ -53,7 +63,7 @@ custom_constants/margin_bottom = 32
 [node name="InfoBackground" type="Panel" parent="MainMargin/MainVBox/Info"]
 margin_left = 32.0
 margin_top = 48.0
-margin_right = 627.0
+margin_right = 624.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 0, 60 )
 custom_styles/panel = SubResource( 1 )
@@ -61,14 +71,14 @@ custom_styles/panel = SubResource( 1 )
 [node name="InfoMargin" type="MarginContainer" parent="MainMargin/MainVBox/Info"]
 margin_left = 32.0
 margin_top = 48.0
-margin_right = 627.0
+margin_right = 624.0
 margin_bottom = 108.0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
 
 [node name="InfoHBox" type="HBoxContainer" parent="MainMargin/MainVBox/Info/InfoMargin"]
 margin_left = 16.0
-margin_right = 579.0
+margin_right = 576.0
 margin_bottom = 60.0
 
 [node name="HighScoreIcon" type="TextureRect" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
@@ -90,39 +100,41 @@ margin_right = 168.0
 margin_bottom = 47.0
 theme = ExtResource( 9 )
 text = "123123"
+script = ExtResource( 5 )
 
 [node name="BalanceIcon" type="TextureRect" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
-margin_left = 397.0
-margin_right = 435.0
+margin_left = 394.0
+margin_right = 432.0
 margin_bottom = 60.0
 size_flags_horizontal = 10
 texture = ExtResource( 10 )
 stretch_mode = 4
 
 [node name="BalanceSpace" type="Control" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
-margin_left = 439.0
-margin_right = 447.0
+margin_left = 436.0
+margin_right = 444.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 8, 0 )
 
 [node name="BalanceText" type="Label" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
-margin_left = 451.0
+margin_left = 448.0
 margin_top = 13.0
-margin_right = 563.0
+margin_right = 560.0
 margin_bottom = 47.0
 size_flags_horizontal = 8
 theme = ExtResource( 9 )
 text = "123123"
+script = ExtResource( 11 )
 
 [node name="Player" type="HBoxContainer" parent="MainMargin/MainVBox"]
-margin_top = 157.0
-margin_right = 659.0
-margin_bottom = 477.0
+margin_top = 161.0
+margin_right = 656.0
+margin_bottom = 481.0
 rect_min_size = Vector2( 0, 320 )
 size_flags_vertical = 6
 
 [node name="PreviusButton" type="Button" parent="MainMargin/MainVBox/Player"]
-margin_right = 217.0
+margin_right = 215.0
 margin_bottom = 320.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -130,17 +142,19 @@ enabled_focus_mode = 0
 icon = ExtResource( 3 )
 flat = true
 script = ExtResource( 1 )
+focus_scale = 1.15
+press_scale = 0.95
 
 [node name="PlayerPreview" type="TextureRect" parent="MainMargin/MainVBox/Player"]
-margin_left = 221.0
-margin_right = 438.0
+margin_left = 219.0
+margin_right = 436.0
 margin_bottom = 320.0
 texture = ExtResource( 4 )
 stretch_mode = 4
 
 [node name="NextButton" type="Button" parent="MainMargin/MainVBox/Player"]
-margin_left = 442.0
-margin_right = 659.0
+margin_left = 440.0
+margin_right = 656.0
 margin_bottom = 320.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -149,11 +163,13 @@ icon = ExtResource( 2 )
 flat = true
 icon_align = 2
 script = ExtResource( 1 )
+focus_scale = 1.15
+press_scale = 0.95
 
 [node name="Upgrade" type="MarginContainer" parent="MainMargin/MainVBox"]
-margin_top = 481.0
-margin_right = 659.0
-margin_bottom = 1089.0
+margin_top = 485.0
+margin_right = 656.0
+margin_bottom = 1093.0
 rect_min_size = Vector2( 0, 420 )
 size_flags_vertical = 6
 size_flags_stretch_ratio = 1.75
@@ -163,9 +179,9 @@ custom_constants/margin_left = 48
 custom_constants/margin_bottom = 32
 
 [node name="UpgradeGrid" type="GridContainer" parent="MainMargin/MainVBox/Upgrade"]
-margin_left = 57.0
+margin_left = 56.0
 margin_top = 32.0
-margin_right = 601.0
+margin_right = 600.0
 margin_bottom = 576.0
 size_flags_horizontal = 4
 custom_constants/vseparation = 32
@@ -186,6 +202,8 @@ enabled_focus_mode = 0
 icon_align = 1
 expand_icon = true
 script = ExtResource( 1 )
+focus_scale = 1.05
+press_scale = 0.95
 
 [node name="UpgradeButton2" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_left = 288.0
@@ -202,6 +220,8 @@ enabled_focus_mode = 0
 icon_align = 1
 expand_icon = true
 script = ExtResource( 1 )
+focus_scale = 1.05
+press_scale = 0.95
 
 [node name="UpgradeButton3" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_top = 288.0
@@ -218,6 +238,8 @@ enabled_focus_mode = 0
 icon_align = 1
 expand_icon = true
 script = ExtResource( 1 )
+focus_scale = 1.05
+press_scale = 0.95
 
 [node name="UpgradeButton4" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_left = 288.0
@@ -235,21 +257,23 @@ enabled_focus_mode = 0
 icon_align = 1
 expand_icon = true
 script = ExtResource( 1 )
+focus_scale = 1.05
+press_scale = 0.95
 
 [node name="Buttom" type="MarginContainer" parent="MainMargin/MainVBox"]
-margin_top = 1093.0
-margin_right = 659.0
+margin_top = 1097.0
+margin_right = 656.0
 margin_bottom = 1280.0
 custom_constants/margin_bottom = 32
 
 [node name="ButtomHBox" type="HBoxContainer" parent="MainMargin/MainVBox/Buttom"]
-margin_right = 659.0
-margin_bottom = 155.0
+margin_right = 656.0
+margin_bottom = 151.0
 size_flags_horizontal = 5
 
 [node name="SettingsButton" type="Button" parent="MainMargin/MainVBox/Buttom/ButtomHBox"]
 margin_right = 157.0
-margin_bottom = 155.0
+margin_bottom = 151.0
 focus_mode = 0
 enabled_focus_mode = 0
 icon = ExtResource( 7 )
@@ -258,12 +282,18 @@ script = ExtResource( 1 )
 
 [node name="PlayButton" type="Button" parent="MainMargin/MainVBox/Buttom/ButtomHBox"]
 margin_left = 161.0
-margin_right = 659.0
-margin_bottom = 155.0
+margin_right = 656.0
+margin_bottom = 151.0
 focus_mode = 0
 size_flags_horizontal = 3
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 enabled_focus_mode = 0
 icon = ExtResource( 6 )
-flat = true
-icon_align = 2
-script = ExtResource( 1 )
+icon_align = 1
+script = ExtResource( 12 )
+focus_scale = 1.025
+press_scale = 0.9
