@@ -7,4 +7,4 @@ func _ready() -> void:
 
 
 func _balance_changed(value: int) -> void:
-	self.text = str(value)
+	self.text = Global.cut_number(value)

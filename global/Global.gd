@@ -18,12 +18,20 @@ var high_score: int = 0
 var cut_number_dic: Dictionary = {
 	1: 'K',
 	2: 'M',
-	3: 'B'
+	3: 'B',
+	4: 'T',
+	5: 'Q'
 }
 
 
 func _ready() -> void:
-	pass
+	print('425 -> ',cut_number(425))
+	print('42521 -> ',cut_number(42521))
+	print('4252187 -> ',cut_number(4252187))
+	print('425218709 -> ',cut_number(425218709))
+	print('42521870911 -> ',cut_number(42521870911))
+	print('4252187091167 -> ',cut_number(4252187091167))
+	print('4252187091167476 -> ',cut_number(4252187091167476))
 
 
 func _process(_delta: float) -> void:
@@ -66,10 +74,23 @@ func set_high_score(value: int) -> void:
 
 
 func cut_number(number: float) -> String:
-	return str(number)
-
-
-
+	var number_size: int = 0
+	while number >= 1000:
+		number /= 1000
+		number_size += 1
+	
+	if number < 10:
+		number = floor(number * 100) / 100
+	else:
+		number = floor(number * 10) / 10
+	
+	if number_size == 0:
+		return str(floor(number))
+	elif number_size > cut_number_dic.size():
+		return str('> 999.9' + cut_number_dic[cut_number_dic.size()]) 
+	return str(number) + cut_number_dic[number_size]
+		
+	
 
 
 
