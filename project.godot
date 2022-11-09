@@ -44,6 +44,11 @@ window/size/always_on_top.debug=true
 
 common/drop_mouse_on_gui_input_disabled=true
 
+[locale]
+
+translations=PoolStringArray(  )
+locale_filter=[ 1, [ "en", "ru" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true

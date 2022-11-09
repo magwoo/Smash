@@ -6,14 +6,14 @@ signal balance_changed
 
 const lerp_speed: float = 0.25	#lerp speed
 
-var timer: Timer
-
 var lerp_index: float = 1.0
 var time: float = 0.0
 var asint: float = 0.0
 
 var balance: int = 0
 var high_score: int = 0
+
+var upgrades: Array = [1, 1, 1, 1]
 
 var cut_number_dic: Dictionary = {
 	1: 'K',
@@ -25,20 +25,13 @@ var cut_number_dic: Dictionary = {
 
 
 func _ready() -> void:
-	print('425 -> ',cut_number(425))
-	print('42521 -> ',cut_number(42521))
-	print('4252187 -> ',cut_number(4252187))
-	print('425218709 -> ',cut_number(425218709))
-	print('42521870911 -> ',cut_number(42521870911))
-	print('4252187091167 -> ',cut_number(4252187091167))
-	print('4252187091167476 -> ',cut_number(4252187091167476))
+	pass
 
 
 func _process(_delta: float) -> void:
 	time += _delta
 	lerp_index = lerp_speed * _delta * 60
-	asint = abs(sin(time))
-
+	asint = sin(time)
 
 static func get_lerp_speed() -> float:
 	return 0.25
