@@ -1,4 +1,8 @@
 extends Control
 
 
-var test: float = 0
+var asdads: int = 5
+
+
+func _ready() -> void:
+	pass
