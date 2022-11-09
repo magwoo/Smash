@@ -1,4 +1,4 @@
 extends Control
 
 
-var test: float = 0
+var asdads: int = 5
