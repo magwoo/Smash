@@ -9,6 +9,7 @@ onready var cost_text: Label = $TextMargin/Cost
 export(int) var buy_cost: int = 0
 export(int, 1, 4) var index: int = 1
 
+var target_value: float = 0
 var cost: int = 0
 
 
@@ -17,7 +18,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	_update_all()
+	bar.value = lerp(bar.value, target_value, Global.lerp_index)
 
 
 func _button_pressed() -> void:
@@ -36,8 +38,10 @@ func _update_cost() -> void:
  
 
 func _update_bar() -> void:
-	pass
+	bar.max_value = cost
+	target_value = min(bar.max_value, Global.balance)
 
 
 func _update_text() -> void:
 	cost_text.text = Global.cut_number(cost)
+	level_text.text = 'УРОВЕНЬ ' + str(Global.upgrades[index - 1])
