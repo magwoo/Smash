@@ -26,12 +26,12 @@ func _process(_delta: float) -> void:
 
 func _button_down() -> void:
 	target_scale = Vector2(press_scale, press_scale)
-	if self.has_method('_button_pressed'):
-		self.call('_button_pressed')
-
+	
 
 func _unpressed() -> void:
 	if focused:
+		if self.has_method('_button_pressed'):
+			self.call('_button_pressed')
 		target_scale = Vector2(focus_scale, focus_scale)
 	else:
 		target_scale = Vector2(1.0, 1.0)

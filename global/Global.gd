@@ -6,6 +6,8 @@ signal balance_changed
 
 const lerp_speed: float = 0.25	#lerp speed
 
+onready var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
+
 var lerp_index: float = 1.0
 var time: float = 0.0
 var asint: float = 0.0
