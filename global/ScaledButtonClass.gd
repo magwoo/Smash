@@ -8,6 +8,7 @@ export(float, 0.5, 1.5, 0.025) var anim_speed: float = 1.0
 
 var target_scale: Vector2 = Vector2(1.0, 1.0)
 var focused: bool = false
+var touched: bool = false
 
 
 func _ready() -> void:
@@ -24,14 +25,17 @@ func _process(_delta: float) -> void:
 		self.rect_scale = lerp(self.rect_scale, target_scale, Global.lerp_index)
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		focused = false
+
+
 func _button_down() -> void:
 	target_scale = Vector2(press_scale, press_scale)
 	
 
 func _unpressed() -> void:
 	if focused:
-		if self.has_method('_button_pressed'):
-			self.call('_button_pressed')
 		target_scale = Vector2(focus_scale, focus_scale)
 	else:
 		target_scale = Vector2(1.0, 1.0)

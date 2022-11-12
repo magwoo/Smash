@@ -2,6 +2,7 @@ extends Node
 
 signal high_score_changed
 signal balance_changed
+signal game_mode_changed
 
 
 const lerp_speed: float = 0.25	#lerp speed
@@ -14,6 +15,8 @@ var asint: float = 0.0
 
 var balance: int = 0
 var high_score: int = 0
+
+var is_game: bool = false
 
 var upgrades: Array = [1, 1, 1, 1]
 
@@ -35,6 +38,7 @@ func _process(_delta: float) -> void:
 	lerp_index = lerp_speed * _delta * 60
 	asint = sin(time)
 
+
 static func get_lerp_speed() -> float:
 	return 0.25
 
@@ -42,6 +46,11 @@ static func get_lerp_speed() -> float:
 func reload_info() -> void:
 	emit_signal('balance_changed')
 	emit_signal('high_score_changed')
+
+
+func toggle_game() -> void:
+	is_game = !is_game
+	emit_signal('game_mode_changed')
 
 
 func set_balance(value: int) -> void:

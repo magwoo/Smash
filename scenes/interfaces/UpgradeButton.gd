@@ -37,8 +37,7 @@ func _process(_delta: float) -> void:
 	style.bg_color = lerp(style.bg_color, target_color, Global.lerp_index)
 	
 
-
-func _button_pressed() -> void:
+func _pressed() -> void:
 	if Global.balance >= cost:
 		Global.reduce_balance(cost)
 		Global.upgrades[index - 1] += 1

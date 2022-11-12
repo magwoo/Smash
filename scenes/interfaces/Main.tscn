@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
@@ -12,12 +12,14 @@
 [ext_resource path="res://resources/images/BalanceIcon.svg" type="Texture" id=10]
 [ext_resource path="res://scenes/interfaces/BalanceText.gd" type="Script" id=11]
 [ext_resource path="res://scenes/interfaces/PlayButton.gd" type="Script" id=12]
-[ext_resource path="res://scenes/interfaces/Main.gd" type="Script" id=13]
+[ext_resource path="res://scenes/interfaces/PlayerSprite.gd" type="Script" id=13]
 [ext_resource path="res://scenes/interfaces/PlayerSelector.gd" type="Script" id=14]
 [ext_resource path="res://scenes/interfaces/Upgrade.gd" type="Script" id=15]
 [ext_resource path="res://resources/fonts/Rubik-Black.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://scenes/interfaces/UpgradeButton.gd" type="Script" id=17]
 [ext_resource path="res://resources/themes/BarStyle.tres" type="StyleBox" id=18]
+[ext_resource path="res://scenes/interfaces/SettingsButton.gd" type="Script" id=19]
+[ext_resource path="res://scenes/interfaces/MainMargin.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.0980392 )
@@ -189,7 +191,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -360.0
 margin_right = 360.0
-script = ExtResource( 13 )
 
 [node name="MainMargin" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -198,6 +199,7 @@ rect_min_size = Vector2( 720, 0 )
 size_flags_horizontal = 4
 custom_constants/margin_right = 32
 custom_constants/margin_left = 32
+script = ExtResource( 20 )
 
 [node name="MainVBox" type="VBoxContainer" parent="MainMargin"]
 margin_left = 32.0
@@ -301,7 +303,8 @@ script = ExtResource( 1 )
 focus_scale = 1.15
 press_scale = 0.95
 
-[node name="PlayerPreview" type="TextureRect" parent="MainMargin/MainVBox/Player"]
+[node name="PlayerPreview" type="TextureRect" parent="MainMargin/MainVBox/Player" groups=["player_icon"]]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 219.0
 margin_right = 436.0
 margin_bottom = 320.0
@@ -642,9 +645,9 @@ focus_mode = 0
 enabled_focus_mode = 0
 icon = ExtResource( 7 )
 flat = true
-script = ExtResource( 1 )
+script = ExtResource( 19 )
 
-[node name="PlayButton" type="Button" parent="MainMargin/MainVBox/Buttom/ButtomHBox" groups=["play"]]
+[node name="PlayButton" type="Button" parent="MainMargin/MainVBox/Buttom/ButtomHBox"]
 margin_left = 161.0
 margin_right = 656.0
 margin_bottom = 151.0
@@ -661,3 +664,8 @@ icon_align = 1
 script = ExtResource( 12 )
 focus_scale = 1.025
 press_scale = 0.9
+
+[node name="Node2D" type="Sprite" parent="."]
+position = Vector2( 360, 332 )
+texture = ExtResource( 4 )
+script = ExtResource( 13 )
