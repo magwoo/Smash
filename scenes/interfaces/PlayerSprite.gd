@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		target_scale = 0.35
 		target_angle = 0
 		if self.global_position.y > get_viewport_rect().size.y - 202:
-			get_tree().change_scene("res://scenes/gameplay/Game.tscn")
+			get_tree().change_scene('res://scenes/gameplay/Game.tscn')
 	else:
 		target_position = player_icon.rect_global_position + player_icon.rect_pivot_offset
 		target_scale = 1 + sin(Global.time / 2) / 20

@@ -3,11 +3,15 @@ extends Node
 signal high_score_changed
 signal balance_changed
 signal game_mode_changed
+signal viewport_resized
 
 
 const lerp_speed: float = 0.25	#lerp speed
 
 onready var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
+
+onready var viewport: Viewport = self.get_parent()
+onready var viewport_size: Vector2 = viewport.size
 
 var lerp_index: float = 1.0
 var time: float = 0.0
@@ -30,13 +34,18 @@ var cut_number_dic: Dictionary = {
 
 
 func _ready() -> void:
-	pass
+	randomize()
 
 
 func _process(_delta: float) -> void:
 	time += _delta
 	lerp_index = lerp_speed * _delta * 60
 	asint = sin(time)
+	if viewport.size != viewport_size:
+		viewport_size = viewport.size
+		print(viewport_size)
+		emit_signal('viewport_resized')
+	
 
 
 static func get_lerp_speed() -> float:
