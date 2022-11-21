@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	current_number = lerp(current_number, target_number, Global.lerp_index)
+	current_number = lerp(current_number, target_number + 0.9, Global.lerp_index)
 	self.text = Global.cut_number(int(current_number))
 
 

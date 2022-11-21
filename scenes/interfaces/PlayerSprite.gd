@@ -8,6 +8,8 @@ var target_angle: float = 0
 var target_position: Vector2 = Vector2()
 var target_scale: float = 0
 
+var game_scene: PackedScene = load('res://scenes/gameplay/Game.tscn')
+
 
 func _ready() -> void:
 	player_icon = get_tree().get_nodes_in_group('player_icon')[0]
@@ -19,7 +21,7 @@ func _process(_delta: float) -> void:
 		target_scale = 0.35
 		target_angle = 0
 		if self.global_position.y > get_viewport_rect().size.y - 202:
-			get_tree().change_scene('res://scenes/gameplay/Game.tscn')
+			get_tree().change_scene_to(game_scene)
 	else:
 		target_position = player_icon.rect_global_position + player_icon.rect_pivot_offset
 		target_scale = 1 + sin(Global.time / 2) / 20

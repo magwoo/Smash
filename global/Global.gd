@@ -35,6 +35,17 @@ var cut_number_dic: Dictionary = {
 
 func _ready() -> void:
 	randomize()
+	SDK.connect('sync_success', self, 'sync_success')
+	yield(get_tree().create_timer(1.0), 'timeout')
+	SDK.set_data('Test1', int(rand_range(0, 1000)))
+	yield(get_tree().create_timer(1.0), 'timeout')
+	SDK.sync_data()
+	SDK.show_reward_ad()
+
+
+func sync_success() -> void:
+	Global.set_high_score(555)
+	set_balance(SDK.get_data('Test1'))
 
 
 func _process(_delta: float) -> void:
@@ -43,7 +54,6 @@ func _process(_delta: float) -> void:
 	asint = sin(time)
 	if viewport.size != viewport_size:
 		viewport_size = viewport.size
-		print(viewport_size)
 		emit_signal('viewport_resized')
 	
 

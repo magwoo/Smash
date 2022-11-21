@@ -29,6 +29,11 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://global/Global.gd"
+SDK="*res://global/SDK.gd"
+
+[debug]
+
+gdscript/warnings/enable=false
 
 [display]
 
