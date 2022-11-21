@@ -27,8 +27,10 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
-		focused = false
-
+		if !event.pressed:
+			target_scale = Vector2(1.0, 1.0)
+			focused = false
+			
 
 func _button_down() -> void:
 	target_scale = Vector2(press_scale, press_scale)

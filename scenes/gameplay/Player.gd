@@ -30,6 +30,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.is_action_pressed('mouse_left'):
 		target_position = event.relative
+	
+	if event is InputEventScreenDrag:
+		target_position = event.relative
 
 
 func _process(_delta: float) -> void:
