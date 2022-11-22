@@ -10,7 +10,7 @@ var health: int = 0
 
 
 func _ready() -> void:
-	health = rand_range(1, 120000)
+	health = rand_range(1, 400)
 	label.text = Global.cut_number(health)
 
 

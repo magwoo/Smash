@@ -9,7 +9,7 @@ onready var root: Node2D = self.get_parent().get_parent()
 
 var dir: Vector2 = Vector2()
 var ang: float = 0
-var damage: int = 1440
+var damage: int = 10
 
 
 func _ready() -> void:

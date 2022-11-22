@@ -55,7 +55,11 @@ func _process(_delta: float) -> void:
 	if viewport.size != viewport_size:
 		viewport_size = viewport.size
 		emit_signal('viewport_resized')
-	
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed('esc'):
+		get_tree().quit()
 
 
 static func get_lerp_speed() -> float:

@@ -38,15 +38,15 @@ custom_constants/margin_top = 32
 custom_constants/margin_left = 24
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer"]
-margin_left = 297.0
+margin_left = 337.0
 margin_top = 32.0
-margin_right = 423.0
+margin_right = 383.0
 margin_bottom = 108.0
 rect_pivot_offset = Vector2( 63, 38 )
 size_flags_horizontal = 6
 size_flags_vertical = 2
 custom_fonts/font = SubResource( 1 )
-text = "123"
+text = "0"
 align = 1
 valign = 1
 script = ExtResource( 5 )
