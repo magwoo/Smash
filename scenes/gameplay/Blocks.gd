@@ -17,9 +17,15 @@ func _ready() -> void:
 
 
 func spawn_level() -> void:
+	var line_health: Array = []
+	var line_nodes: Array = []
+	
 	for i in 4:
 		var block: StaticBody2D = block_packed.instance()
+		line_nodes.push_front(block)
 		block.position = Vector2(-262.5 + i * 175, -220)
+		block.health = rand_range(1, 400)
+		line_health.push_front(block.health)
 		self.add_child(block)
 
 

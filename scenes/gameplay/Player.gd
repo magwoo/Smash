@@ -60,7 +60,7 @@ func area_entered(area: Area2D) -> void:
 	if area.is_in_group('Block'):
 		var tree: Node2D = $'..'
 		if tree.scores > Global.high_score:
-			Global.high_score = tree.scores
-		Global.add_balance(tree.scores)
+			Global.set_high_score(tree.scores, true)
+		Global.add_balance(tree.scores, true)
 		Global.is_game = false
 		self.queue_free()

@@ -2,11 +2,13 @@ extends Node
 
 
 signal sync_success()
+signal cloud_ready()
 signal reward_closed(success)
 
 var _gs: JavaScriptObject
 var _ready: bool = false
 var _is_debug: bool = false
+var _is_cloud_ready: bool = false
 
 onready var _cb_reward_closed: JavaScriptObject
 onready var _cb_sync_complete: JavaScriptObject
@@ -35,6 +37,9 @@ func _ready() -> void:
 
 
 func _sync_success() -> void:
+	if !_is_cloud_ready:
+		_is_cloud_ready = true
+		emit_signal('cloud_ready')
 	_ready = true
 
 
@@ -137,6 +142,7 @@ func get_data(key: String) -> float:
 		print('Get data ' + str(key) + ' successfull')
 		return .0
 	key = key.to_lower()
+	print(key)
 	if is_ready():
 		return float(_gs.player.get(key))
 	else:
