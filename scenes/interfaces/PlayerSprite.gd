@@ -13,6 +13,7 @@ var game_scene: PackedScene = load('res://scenes/gameplay/Game.tscn')
 
 func _ready() -> void:
 	player_icon = get_tree().get_nodes_in_group('player_icon')[0]
+	self.global_position = player_icon.rect_global_position + player_icon.rect_pivot_offset
 
 
 func _process(_delta: float) -> void:

@@ -40,7 +40,7 @@ margin_top = -640.0
 margin_right = 360.0
 margin_bottom = 640.0
 mouse_filter = 1
-color = Color( 0, 0, 0, 0.3 )
+color = Color( 0, 0, 0, 0.75 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 anchor_left = 0.5

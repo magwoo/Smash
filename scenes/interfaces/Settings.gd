@@ -9,8 +9,6 @@ var is_destroyed: bool = false
 func _ready() -> void: 
 	control.modulate.a = 0
 	self.offset.y = -120
-	
-	if OS.has_feature('HTML5'): $Control/ColorRect.color.a = 0.75
 
 
 func _process(_delta: float) -> void:
