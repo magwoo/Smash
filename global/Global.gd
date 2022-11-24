@@ -6,7 +6,7 @@ signal game_mode_changed
 signal viewport_resized
 
 
-const lerp_speed: float = 0.25	#lerp speed
+const _lerp_speed: float = 0.25	#lerp speed
 
 onready var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
 
@@ -36,6 +36,8 @@ var cut_number_dic: Dictionary = {
 func _ready() -> void:
 	SDK.connect('cloud_ready', self, '_cloud_ready')
 	randomize()
+	yield(get_tree().create_timer(1.0), 'timeout')
+	SDK.open_leaderboard('Balance', 25)
 
 
 func _cloud_ready() -> void:
@@ -45,7 +47,7 @@ func _cloud_ready() -> void:
 
 func _process(_delta: float) -> void:
 	time += _delta
-	lerp_index = lerp_speed * _delta * 60
+	lerp_index = _lerp_speed * _delta * 60
 	asint = sin(time)
 	if viewport.size != viewport_size:
 		viewport_size = viewport.size

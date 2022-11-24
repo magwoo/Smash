@@ -97,6 +97,28 @@ func show_reward_ad() -> void:
 		show_reward_ad()
 
 
+func open_leaderboard(order_by: String = 'score', limit: int = 25, order: bool = true) -> void:
+	if _is_debug: return
+	
+	var arr = JavaScript.create_object('Array', 1)
+	arr[0] = order_by.to_lower()
+	
+	var order_str: String
+	if order: order_str = 'DESC'
+	else: order_str = 'ASC'
+	
+	limit = clamp(limit, 1, 100)
+	
+	var obj = JavaScript.create_object('Object')
+	obj.orderBy = arr
+	obj.order = order_str
+	obj.limit = limit
+	obj.displayFields = arr
+	obj.withMe = 'last'
+	
+	_gs.leaderboard.open(obj)
+
+
 func sync_data() -> void:
 	if _is_debug:
 		print('Sync successfull')
