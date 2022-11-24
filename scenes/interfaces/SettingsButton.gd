@@ -1,5 +1,8 @@
 extends ScaledButton
 
 
+onready var settings: Control = $'../../../../../..'
+
+
 func _pressed() -> void:
-	Global.add_balance(rand_range(0, 10000))
+	settings.is_blured = !settings.is_blured

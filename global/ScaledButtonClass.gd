@@ -18,6 +18,7 @@ func _ready() -> void:
 	self.connect('button_down', self, '_button_down')
 	self.connect('button_up', self, '_unpressed')
 	self.rect_pivot_offset = self.rect_size / 2
+	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
 
 func _process(_delta: float) -> void:

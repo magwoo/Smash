@@ -9,11 +9,13 @@ var _gs: JavaScriptObject
 var _ready: bool = false
 var _is_debug: bool = false
 var _is_cloud_ready: bool = false
+var _ad_timer: float = 0.0
 
 onready var _cb_reward_closed: JavaScriptObject
 onready var _cb_sync_complete: JavaScriptObject
 
 const _error_timeout: float = 0.25
+const _ad_reload_time: int = 90
 
 
 func _ready() -> void:
@@ -34,6 +36,12 @@ func _ready() -> void:
 	else:
 		_is_debug = true
 		_ready = false
+	
+	_ad_timer = _ad_reload_time
+
+
+func _process(_delta: float) -> void:
+	_ad_timer += _delta
 
 
 func _sync_success() -> void:
@@ -63,11 +71,16 @@ func is_ready() -> bool:
 
 
 func show_fullscreen_ad() -> void:
+	if _ad_timer < _ad_reload_time:
+		print('Ad reloading')
+		return
 	if _is_debug:
 		print('Show fullscreen ad successfull')
+		_ad_timer = 0
 		return
 	if is_ready():
 		_gs.ads.showFullscreen()
+		_ad_timer = 0
 	else:
 		yield(get_tree().create_timer(_error_timeout), 'timeout')
 		show_fullscreen_ad()

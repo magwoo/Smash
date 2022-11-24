@@ -23,20 +23,8 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.937255, 0.662745, 0.345098, 1 )
+modulate = Color( 0.4, 0.4, 0.345098, 1 )
 position = Vector2( 1542, 686 )
-texture = ExtResource( 1 )
-offset = Vector2( -1542, -686 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-modulate = Color( 0.858824, 0.584314, 0.266667, 1 )
-position = Vector2( 1732, 690 )
-texture = ExtResource( 1 )
-offset = Vector2( -1542, -686 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-modulate = Color( 0.780392, 0.505882, 0.188235, 1 )
-position = Vector2( 1938, 687 )
 texture = ExtResource( 1 )
 offset = Vector2( -1542, -686 )
 
