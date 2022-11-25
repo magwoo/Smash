@@ -9,12 +9,12 @@ onready var label: Label = $Label
 onready var area: Area2D = $BlockArea
 onready var sprite: Sprite = $Sprite
 onready var collision: CollisionShape2D = $CollisionShape2D
+onready var menu: Node2D = get_parent().get_parent()
 
 var health: int = 0
 var destroyed: bool = false
 var line_max_heath: int = 0
 var line_min_heath: int = 0
-var start_health: int = 0
 
 var self_level: int = 0
 var size: Vector2 = Vector2()
@@ -26,8 +26,6 @@ func _ready() -> void:
 	label.text = Global.cut_number(health)
 	
 	sprite.modulate.r = min(0.925, 0.5 + self_level / 100.0)
-	
-	start_health = health
 	
 	update_color()
 
@@ -50,7 +48,7 @@ func hit(damage: int) -> void:
 	update_color()
 	
 	if health <= 0:
-		spawner.diff_level += int(max(1, start_health / 25.0))
+		spawner.diff_level += int(max(1, menu.scores / rand_range(400, 750)))
 		area.queue_free()
 		collision.queue_free()
 		destroyed = true

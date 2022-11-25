@@ -18,6 +18,7 @@ onready var size: Vector2 = sprite.texture.get_size() * sprite.scale
 
 
 func _ready() -> void:
+	shoot_speed = 0.4 / Global.upgrades[1]
 	self.position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y - 202)
 	area.connect('area_entered', self, 'area_entered')
 	Global.connect('viewport_resized', self, 'viewport_resized')

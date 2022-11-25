@@ -12,6 +12,7 @@ var diff_level: int = 1
 
 
 func _ready() -> void:
+	diff_level = Global.upgrades[1] * 5
 	self.add_child(timer)
 	timer.start(spawn_timer)
 	timer.connect('timeout', self, 'spawn_level')
@@ -33,7 +34,7 @@ func spawn_level() -> void:
 		block.size = Vector2(temp_size, temp_size)
 		block.position = Vector2(i * 684 / line_count + block.size.x / 2 - 684 / 2, -220)
 		
-		block.health = int(rand_range(max(1, diff_level / 2), diff_level * 4))
+		block.health = int(rand_range(max(1, diff_level * 0.2), diff_level * 2.5))
 		block.self_level = current_level
 		
 		line_health.append(block.health)
