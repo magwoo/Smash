@@ -4,6 +4,7 @@ extends StaticBody2D
 var speed: float = 250
 
 onready var viewport: Vector2 = get_viewport_rect().size
+onready var spawner: Node2D = get_parent()
 onready var label: Label = $Label
 onready var area: Area2D = $BlockArea
 onready var sprite: Sprite = $Sprite
@@ -13,14 +14,20 @@ var health: int = 0
 var destroyed: bool = false
 var line_max_heath: int = 0
 var line_min_heath: int = 0
+var start_health: int = 0
 
 var self_level: int = 0
+var size: Vector2 = Vector2()
 
 
 func _ready() -> void:
+	self.scale = size / sprite.texture.get_size()
+	
 	label.text = Global.cut_number(health)
 	
 	sprite.modulate.r = min(0.925, 0.5 + self_level / 100.0)
+	
+	start_health = health
 	
 	update_color()
 
@@ -28,7 +35,10 @@ func _ready() -> void:
 func update_color() -> void:
 	var color_offest: float
 	
-	color_offest = float(health - line_min_heath) / float(line_max_heath - line_min_heath)
+	if !float(line_max_heath - line_min_heath) == 0:
+		color_offest = float(health - line_min_heath) / float(line_max_heath - line_min_heath)
+	else:
+		line_max_heath += 2
 	color_offest = 1 - color_offest
 	sprite.modulate.g = clamp(0.65 * color_offest, 0.4, 0.75) 
 	
@@ -40,6 +50,7 @@ func hit(damage: int) -> void:
 	update_color()
 	
 	if health <= 0:
+		spawner.diff_level += int(max(1, start_health / 25.0))
 		area.queue_free()
 		collision.queue_free()
 		destroyed = true

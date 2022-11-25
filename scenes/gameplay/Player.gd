@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var target_position: Vector2 = Vector2()
-var shoot_speed: float = 0.075
+var shoot_speed: float = 1.0
 var target_angle: float = 0
 
 var bullet_packed: PackedScene = load('res://scenes/gameplay/Bullet.tscn')
@@ -51,6 +51,7 @@ func viewport_resized() -> void:
 
 func shoot() -> void:
 	var bullet: Sprite = bullet_packed.instance()
+	bullet.damage = Global.upgrades[0]
 	bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
 	bullet.ang = self.rotation
 	bullets_node.add_child(bullet)
