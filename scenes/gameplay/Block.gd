@@ -61,12 +61,11 @@ func hit(damage: int) -> void:
 			var level_arr: Array = get_tree().get_nodes_in_group(str(level_hash))
 			
 			for i in level_arr:
-				i._destroy()
-		else:
-			_destroy()
+				i.destroy()
+		else: destroy()
 
 
-func _destroy() -> void:
+func destroy() -> void:
 	area.queue_free()
 	collision.queue_free()
 	destroyed = true

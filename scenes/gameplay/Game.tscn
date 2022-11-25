@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/gameplay/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gameplay/Game.gd" type="Script" id=2]
 [ext_resource path="res://resources/fonts/Rubik-Black.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scenes/gameplay/Blocks.gd" type="Script" id=4]
 [ext_resource path="res://scenes/interfaces/TextScores.gd" type="Script" id=5]
+[ext_resource path="res://scenes/gameplay/PauseButton.gd" type="Script" id=6]
+[ext_resource path="res://resources/images/PauseIcon.svg" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -42,7 +44,7 @@ margin_left = 337.0
 margin_top = 32.0
 margin_right = 383.0
 margin_bottom = 108.0
-rect_pivot_offset = Vector2( 63, 38 )
+rect_pivot_offset = Vector2( 23, 38 )
 size_flags_horizontal = 6
 size_flags_vertical = 2
 custom_fonts/font = SubResource( 1 )
@@ -50,3 +52,17 @@ text = "0"
 align = 1
 valign = 1
 script = ExtResource( 5 )
+
+[node name="ScaledButton" type="Button" parent="CanvasLayer/Control/MarginContainer"]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 100.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 64, 64 )
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+script = ExtResource( 6 )

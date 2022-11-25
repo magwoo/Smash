@@ -18,6 +18,7 @@ func _process(_delta: float) -> void:
 func scores_changed() -> void:
 	self.text = Global.cut_number(root.scores)
 	target_scale += 0.25
+	target_scale = min(3, target_scale)
 
 
 func resized() -> void:
