@@ -15,17 +15,24 @@ var health: int = 0
 var destroyed: bool = false
 var line_max_heath: int = 0
 var line_min_heath: int = 0
+var is_star: bool = false
 
+var level_hash: int
 var self_level: int = 0
 var size: Vector2 = Vector2()
 
 
 func _ready() -> void:
 	self.scale = size / sprite.texture.get_size()
-	
 	label.text = Global.cut_number(health)
-	
 	sprite.modulate.r = min(0.925, 0.5 + self_level / 100.0)
+	
+	if int(rand_range(0, 1.05)):
+		is_star = true
+		label.margin_bottom = 50
+	else:
+		label.margin_bottom = 80
+		$Star.queue_free()
 	
 	update_color()
 
@@ -49,9 +56,20 @@ func hit(damage: int) -> void:
 	
 	if health <= 0:
 		spawner.diff_level += int(max(1, menu.scores / rand_range(400, 750)))
-		area.queue_free()
-		collision.queue_free()
-		destroyed = true
+		
+		if is_star:
+			var level_arr: Array = get_tree().get_nodes_in_group(str(level_hash))
+			
+			for i in level_arr:
+				i._destroy()
+		else:
+			_destroy()
+
+
+func _destroy() -> void:
+	area.queue_free()
+	collision.queue_free()
+	destroyed = true
 
 
 func _process(_delta: float) -> void:

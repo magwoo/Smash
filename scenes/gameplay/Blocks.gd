@@ -26,6 +26,8 @@ func spawn_level() -> void:
 	var line_health: Array = []
 	var line_nodes: Array = []
 	
+	var line_hash: int = int(rand_range(0, 1000000000))
+	
 	for i in line_count:
 		var block: StaticBody2D = block_packed.instance()
 		line_nodes.append(block)
@@ -36,6 +38,8 @@ func spawn_level() -> void:
 		
 		block.health = int(rand_range(max(1, diff_level * 0.2), diff_level * 2.5))
 		block.self_level = current_level
+		block.level_hash = line_hash
+		block.add_to_group(str(line_hash))
 		
 		line_health.append(block.health)
 	
