@@ -1,7 +1,7 @@
 extends ScaledButton
 
 
-onready var tree: Control = $'../../../../../..'
+onready var tree: Control = get_tree().current_scene
 onready var settings_packed: PackedScene = load('res://scenes/interfaces/Settings.tscn')
 
 

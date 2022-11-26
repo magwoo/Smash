@@ -32,6 +32,34 @@ var cut_number_dic: Dictionary = {
 	5: 'Q'
 }
 
+onready var player_dic: Dictionary = {
+	1: {
+		'image': load('res://resources/images/PlayerSkins/Player.svg'),
+		'price': 1000,
+		'has': true
+	},
+	2: {
+		'image': load('res://resources/images/Block.svg'),
+		'price': 2500,
+		'has': false
+	},
+	3: {
+		'image': load('res://resources/images/BalanceIcon.svg'),
+		'price': 7500,
+		'has': false
+	},
+	4: {
+		'image': load('res://resources/images/LeaderboardIcon.svg'),
+		'price': 25000,
+		'has': false
+	},
+	5: {
+		'image': load('res://resources/images/SettingsIcon.svg'),
+		'price': 120000,
+		'has': false
+	}
+}
+
 
 func _ready() -> void:
 	SDK.connect('cloud_ready', self, '_cloud_ready')

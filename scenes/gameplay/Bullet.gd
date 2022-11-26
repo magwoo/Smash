@@ -5,7 +5,7 @@ const speed: float = 1200.0
 
 onready var area: Area2D = $Area2D
 onready var notifier: VisibilityNotifier2D = $VisibilityNotifier2D
-onready var root: Node2D = self.get_parent().get_parent()
+onready var root: Node2D = get_tree().current_scene
 
 var dir: Vector2 = Vector2()
 var ang: float = 0

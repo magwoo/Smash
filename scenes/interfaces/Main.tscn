@@ -3,7 +3,7 @@
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
 [ext_resource path="res://resources/images/SwitchPlayerIcon2.svg" type="Texture" id=3]
-[ext_resource path="res://resources/images/Player.svg" type="Texture" id=4]
+[ext_resource path="res://resources/images/PlayerSkins/Player.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/interfaces/HighScoreText.gd" type="Script" id=5]
 [ext_resource path="res://resources/images/PlayIcon.svg" type="Texture" id=6]
 [ext_resource path="res://resources/images/SettingsIcon.svg" type="Texture" id=7]
@@ -683,7 +683,7 @@ script = ExtResource( 12 )
 focus_scale = 1.025
 press_scale = 0.9
 
-[node name="Node2D" type="Sprite" parent="MainMenu"]
+[node name="Node2D" type="Sprite" parent="MainMenu" groups=["PlayerSprite"]]
 position = Vector2( 360, 332 )
 texture = ExtResource( 4 )
 script = ExtResource( 13 )
