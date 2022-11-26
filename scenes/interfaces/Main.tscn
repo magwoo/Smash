@@ -1,11 +1,10 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
 [ext_resource path="res://resources/images/SwitchPlayerIcon2.svg" type="Texture" id=3]
 [ext_resource path="res://resources/images/PlayerSkins/Player.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/interfaces/HighScoreText.gd" type="Script" id=5]
-[ext_resource path="res://resources/images/PlayIcon.svg" type="Texture" id=6]
 [ext_resource path="res://resources/images/SettingsIcon.svg" type="Texture" id=7]
 [ext_resource path="res://resources/images/HighScoreIcon.svg" type="Texture" id=8]
 [ext_resource path="res://resources/themes/DefaultTheme.tres" type="Theme" id=9]
@@ -180,12 +179,54 @@ tracks/0/keys = {
 "values": [ 0.0, -2.5, 2.5, 0.0 ]
 }
 
+[sub_resource type="DynamicFont" id=16]
+size = 96
+use_filter = true
+font_data = ExtResource( 16 )
+
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 0.709804, 0.372549, 1 )
 corner_radius_top_left = 48
 corner_radius_top_right = 48
 corner_radius_bottom_right = 48
 corner_radius_bottom_left = 48
+
+[sub_resource type="DynamicFont" id=17]
+size = 96
+use_filter = true
+font_data = ExtResource( 16 )
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "buy_not_avaible"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -2.5, 2.5, 0.0 ]
+}
 
 [node name="MainMenu" type="Control" groups=["MainMenu"]]
 anchor_left = 0.5
@@ -665,23 +706,56 @@ flat = true
 script = ExtResource( 19 )
 
 [node name="PlayButton" type="Button" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 161.0
 margin_right = 656.0
 margin_bottom = 151.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.141176, 0.141176, 0.141176, 1 )
+custom_colors/font_color_focus = Color( 0.141176, 0.141176, 0.141176, 1 )
+custom_colors/font_color = Color( 0.141176, 0.141176, 0.141176, 1 )
+custom_colors/font_color_hover = Color( 0.141176, 0.141176, 0.141176, 1 )
+custom_colors/font_color_pressed = Color( 0.141176, 0.141176, 0.141176, 1 )
+custom_fonts/font = SubResource( 16 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 3 )
 custom_styles/normal = SubResource( 3 )
 enabled_focus_mode = 0
-icon = ExtResource( 6 )
+text = "ИГРАТЬ"
 icon_align = 1
 script = ExtResource( 12 )
 focus_scale = 1.025
 press_scale = 0.9
+
+[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_styles/fg = ExtResource( 18 )
+custom_styles/bg = SubResource( 2 )
+max_value = 1.25
+value = 0.25
+percent_visible = false
+
+[node name="Label" type="Label" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_fonts/font = SubResource( 17 )
+text = "КУПИТЬ"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+playback_speed = 4.0
+anims/RESET = SubResource( 18 )
+anims/buy_not_avaible = SubResource( 19 )
 
 [node name="Node2D" type="Sprite" parent="MainMenu" groups=["PlayerSprite"]]
 position = Vector2( 360, 332 )

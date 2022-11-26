@@ -40,7 +40,7 @@ onready var player_dic: Dictionary = {
 		'has': true
 	},
 	2: {
-		'image': load('res://resources/images/Block.svg'),
+		'image': load('res://resources/images/WhiteBlock.svg'),
 		'price': 2500,
 		'has': false
 	},
