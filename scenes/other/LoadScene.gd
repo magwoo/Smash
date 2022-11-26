@@ -11,22 +11,22 @@ var load_value: float = 0
 
 
 func _ready() -> void:
-	load_progress += 15
-	
 	yield(get_tree().create_timer(0.5), 'timeout')
-	load_progress += 10
+	load_progress += int(rand_range(5, 20))
 	
 	while main_packed == null:
 		yield(get_tree().create_timer(0.1), 'timeout')
 	logo.step += 1
-	load_progress += 20
+	load_progress += int(rand_range(10, 30))
 	
-	yield(get_tree().create_timer(1.0), 'timeout')
-	load_progress += 15
+	yield(get_tree().create_timer(0.5), 'timeout')
+	load_progress += int(rand_range(0, 30))
+	yield(get_tree().create_timer(0.5), 'timeout')
+	load_progress += int(rand_range(0, 20))
 	
 	while !SDK.is_ready():
 		yield(get_tree().create_timer(0.1), 'timeout')
-	load_progress += 40
+	load_progress += 100 - load_progress
 	
 	yield(get_tree().create_timer(0.5), 'timeout')
 	
