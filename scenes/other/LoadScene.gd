@@ -17,10 +17,12 @@ func _ready() -> void:
 	while main_packed == null:
 		yield(get_tree().create_timer(0.1), 'timeout')
 	logo.step += 1
-	load_progress += int(rand_range(10, 30))
+	yield(get_tree().create_timer(0.25), 'timeout')
+	load_progress += int(rand_range(10, 25))
 	
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(0, 30))
+	
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(0, 20))
 	

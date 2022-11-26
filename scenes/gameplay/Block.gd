@@ -27,7 +27,7 @@ func _ready() -> void:
 	label.text = Global.cut_number(health)
 	sprite.modulate.r = min(0.925, 0.5 + self_level / 100.0)
 	
-	if int(rand_range(0, 1.05)):
+	if int(rand_range(0, 1.075)):
 		is_star = true
 		label.margin_bottom = 50
 	else:
@@ -61,11 +61,15 @@ func hit(damage: int) -> void:
 			var level_arr: Array = get_tree().get_nodes_in_group(str(level_hash))
 			
 			for i in level_arr:
-				i.destroy()
+				i.destroy(true)
 		else: destroy()
 
 
-func destroy() -> void:
+func destroy(add_balance: bool = false) -> void:
+	if add_balance:
+		menu.scores += max(0, self.health)
+		$'/root/Game'.label.scores_changed()
+		print('added: ' + str(max(0, self.health)))
 	area.queue_free()
 	collision.queue_free()
 	destroyed = true
