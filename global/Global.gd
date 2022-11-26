@@ -19,6 +19,7 @@ var asint: float = 0.0
 
 var balance: int = 0
 var high_score: int = 0
+var selected_player: int = 1
 
 var is_game: bool = false
 
