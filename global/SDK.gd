@@ -29,8 +29,6 @@ func _ready() -> void:
 		_gs.ads.on('rewarded:close', _cb_reward_closed)
 		_gs.player.on('sync', _cb_sync_complete)
 		
-		self.connect('sync_success', self, '_sync_success')
-		
 		_gs.player.sync()
 	
 	else:
@@ -44,13 +42,6 @@ func _process(_delta: float) -> void:
 	_ad_timer += _delta
 
 
-func _sync_success() -> void:
-	if !_is_cloud_ready:
-		_is_cloud_ready = true
-		emit_signal('cloud_ready')
-	_ready = true
-
-
 func _reward_ad_closed(args: Array) -> void:
 	var success: bool = bool(args[0])
 	emit_signal('reward_closed', success)
@@ -60,6 +51,10 @@ func _sync_complete(args: Array) -> void:
 	var success: bool = bool(args[0])
 	if success:
 		emit_signal('sync_success')
+		if !_is_cloud_ready:
+			_is_cloud_ready = true
+			emit_signal('cloud_ready')
+		_ready = true
 	else:
 		sync_data()
 

@@ -10,17 +10,14 @@ const _lerp_speed: float = 0.25	#lerp speed
 
 onready var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
 
-onready var viewport: Viewport = self.get_parent()
-onready var viewport_size: Vector2 = viewport.size
-
 var lerp_index: float = 1.0
 var time: float = 0.0
 var asint: float = 0.0
 
 var balance: int = 0
 var high_score: int = 0
-var selected_player: int = 1
 
+var selected_player: int = 1
 var is_game: bool = false
 
 var upgrades: Array = [1, 1, 1, 1]
@@ -65,22 +62,18 @@ onready var player_dic: Dictionary = {
 func _ready() -> void:
 	SDK.connect('cloud_ready', self, '_cloud_ready')
 	randomize()
-	yield(get_tree().create_timer(1.0), 'timeout')
-	SDK.open_leaderboard('Balance', 25)
 
 
 func _cloud_ready() -> void:
-	balance = SDK.get_data('Balance')
-	high_score = SDK.get_data('HighScore')
+	yield(get_tree().create_timer(0.05), 'timeout')
+	set_balance(SDK.get_data('Balance'))
+	set_high_score(SDK.get_data('HighScore'))
 
 
 func _process(_delta: float) -> void:
 	time += _delta
 	lerp_index = _lerp_speed * _delta * 60
 	asint = sin(time)
-	if viewport.size != viewport_size:
-		viewport_size = viewport.size
-		emit_signal('viewport_resized')
 
 
 func _input(event: InputEvent) -> void:
@@ -93,8 +86,8 @@ static func get_lerp_speed() -> float:
 
 
 func reload_info() -> void:
-	emit_signal('balance_changed')
-	emit_signal('high_score_changed')
+	emit_signal('balance_changed', balance)
+	emit_signal('high_score_changed', high_score)
 
 
 func toggle_game() -> void:

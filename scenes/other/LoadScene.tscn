@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/images/Logo.svg" type="Texture" id=1]
+[ext_resource path="res://scenes/other/LoadScene.gd" type="Script" id=2]
+[ext_resource path="res://scenes/other/SpriteLogo.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.180392, 0.180392, 0.180392, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LoadScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="LoadMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 48
+custom_constants/margin_top = 32
+custom_constants/margin_left = 48
+custom_constants/margin_bottom = 128
+
+[node name="LoadingBar" type="ProgressBar" parent="LoadMargin"]
+margin_left = 48.0
+margin_top = 1144.0
+margin_right = 672.0
+margin_bottom = 1152.0
+rect_min_size = Vector2( 0, 8 )
+size_flags_vertical = 8
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 45.0
+percent_visible = false
+
+[node name="Logo" type="Sprite" parent="."]
+position = Vector2( 360, 524 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )

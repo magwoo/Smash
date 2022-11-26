@@ -249,12 +249,13 @@ mouse_filter = 1
 size_flags_horizontal = 4
 custom_constants/margin_right = 32
 custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
 script = ExtResource( 20 )
 
 [node name="MainVBox" type="VBoxContainer" parent="MainMenu/MainMargin"]
 margin_left = 32.0
 margin_right = 688.0
-margin_bottom = 1280.0
+margin_bottom = 1248.0
 
 [node name="Info" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox"]
 margin_top = 12.0
@@ -684,18 +685,13 @@ playback_speed = 4.0
 anims/RESET = SubResource( 14 )
 anims/buy_not_avaible = SubResource( 15 )
 
-[node name="Buttom" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox"]
+[node name="ButtomHBox" type="HBoxContainer" parent="MainMenu/MainMargin/MainVBox"]
 margin_top = 1096.0
 margin_right = 656.0
-margin_bottom = 1279.0
-custom_constants/margin_bottom = 32
-
-[node name="ButtomHBox" type="HBoxContainer" parent="MainMenu/MainMargin/MainVBox/Buttom"]
-margin_right = 656.0
-margin_bottom = 151.0
+margin_bottom = 1247.0
 size_flags_horizontal = 5
 
-[node name="SettingsButton" type="Button" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox"]
+[node name="SettingsButton" type="Button" parent="MainMenu/MainMargin/MainVBox/ButtomHBox"]
 margin_right = 157.0
 margin_bottom = 151.0
 focus_mode = 0
@@ -705,8 +701,7 @@ icon = ExtResource( 7 )
 flat = true
 script = ExtResource( 19 )
 
-[node name="PlayButton" type="Button" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox"]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="PlayButton" type="Button" parent="MainMenu/MainMargin/MainVBox/ButtomHBox"]
 margin_left = 161.0
 margin_right = 656.0
 margin_bottom = 151.0
@@ -731,7 +726,7 @@ script = ExtResource( 12 )
 focus_scale = 1.025
 press_scale = 0.9
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -739,10 +734,10 @@ mouse_filter = 1
 custom_styles/fg = ExtResource( 18 )
 custom_styles/bg = SubResource( 2 )
 max_value = 1.25
-value = 0.25
+value = 0.85
 percent_visible = false
 
-[node name="Label" type="Label" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+[node name="Label" type="Label" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -752,7 +747,7 @@ text = "КУПИТЬ"
 align = 1
 valign = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Buttom/ButtomHBox/PlayButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
 playback_speed = 4.0
 anims/RESET = SubResource( 18 )
 anims/buy_not_avaible = SubResource( 19 )
