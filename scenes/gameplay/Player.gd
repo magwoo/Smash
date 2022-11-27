@@ -5,6 +5,8 @@ var target_position: Vector2 = Vector2()
 var shoot_speed: float = 1.0
 var target_angle: float = 0
 
+var double_shoot: bool = false
+
 var bullet_packed: PackedScene = load('res://scenes/gameplay/Bullet.tscn')
 
 onready var sprite: Sprite = $Sprite
@@ -52,11 +54,22 @@ func viewport_resized() -> void:
 
 
 func shoot() -> void:
-	var bullet: Sprite = bullet_packed.instance()
-	bullet.damage = Global.upgrades[0]
-	bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
-	bullet.ang = self.rotation
-	bullets_node.add_child(bullet)
+	if !double_shoot:
+		var bullet: Sprite = bullet_packed.instance()
+		bullet.damage = Global.upgrades[0]
+		bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
+		bullet.ang = self.rotation
+		bullets_node.add_child(bullet)
+	else:
+		for i in 2:
+			var bullet: Sprite = bullet_packed.instance()
+			bullet.damage = Global.upgrades[0]
+			bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
+			if i == 0:
+				bullet.ang = self.rotation - 0.25
+			else:
+				bullet.ang = self.rotation + 0.25
+			bullets_node.add_child(bullet)
 
 
 func area_entered(area: Area2D) -> void:
