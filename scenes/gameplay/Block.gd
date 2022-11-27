@@ -66,10 +66,11 @@ func hit(damage: int) -> void:
 
 
 func destroy(add_balance: bool = false) -> void:
+	if destroyed: return
 	if add_balance:
 		menu.scores += max(0, self.health)
 		$'/root/Game'.label.scores_changed()
-		print('added: ' + str(max(0, self.health)))
+		$'/root/Game'.label.scores_changed()
 	area.queue_free()
 	collision.queue_free()
 	destroyed = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
@@ -193,6 +193,11 @@ corner_radius_bottom_left = 48
 
 [sub_resource type="DynamicFont" id=17]
 size = 96
+use_filter = true
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 32
 use_filter = true
 font_data = ExtResource( 16 )
 
@@ -702,6 +707,7 @@ flat = true
 script = ExtResource( 19 )
 
 [node name="PlayButton" type="Button" parent="MainMenu/MainMargin/MainVBox/ButtomHBox"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 161.0
 margin_right = 656.0
 margin_bottom = 151.0
@@ -746,6 +752,16 @@ custom_fonts/font = SubResource( 17 )
 text = "КУПИТЬ"
 align = 1
 valign = 1
+
+[node name="Price" type="Label" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_fonts/font = SubResource( 20 )
+text = "1.2K/1.85K"
+align = 1
+valign = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
 playback_speed = 4.0

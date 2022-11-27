@@ -56,4 +56,3 @@ func _unfocused() -> void:
 
 func _resized() -> void:
 	self.rect_pivot_offset = self.rect_size / 2
-	print('button resized')

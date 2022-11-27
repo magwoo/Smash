@@ -33,7 +33,6 @@ SDK="*res://global/SDK.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 gdscript/warnings/enable=false
 
 [display]
@@ -71,6 +70,7 @@ esc={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Bullets"
 2d_physics/layer_4="Blocks"
+2d_physics/layer_5="Bonuses"
 
 [locale]
 

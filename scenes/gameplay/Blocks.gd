@@ -10,6 +10,12 @@ var block_packed: PackedScene = load('res://scenes/gameplay/Block.tscn')
 var current_level: int = 1
 var diff_level: int = 1
 
+var bonus_arr: Array = [
+	load('res://scenes/gameplay/bonuses/DamageBonus.tscn'),
+	load('res://scenes/gameplay/bonuses/DoubleBonus.tscn'),
+	load('res://scenes/gameplay/bonuses/SpeedBonus.tscn')
+]
+
 
 func _ready() -> void:
 	diff_level = Global.upgrades[1] * 5
@@ -27,6 +33,10 @@ func spawn_level() -> void:
 	var line_nodes: Array = []
 	
 	var line_hash: int = int(rand_range(0, 1000000000))
+	var bonus_num: int = -1
+	 
+	if int(rand_range(0, 1.1 + Global.upgrades[3] / 100)):
+		bonus_num = int(rand_range(0, line_count - 0.01))
 	
 	for i in line_count:
 		var block: StaticBody2D = block_packed.instance()
@@ -41,6 +51,8 @@ func spawn_level() -> void:
 		block.level_hash = line_hash
 		block.add_to_group(str(line_hash))
 		
+		if i == bonus_num: spawn_bonus(block)
+		
 		line_health.append(block.health)
 	
 	var max_health: int = line_health.max()
@@ -52,6 +64,12 @@ func spawn_level() -> void:
 		self.add_child(block)
 	
 	current_level += 1
+
+
+func spawn_bonus(block: StaticBody2D) -> void:
+	var bonus: Sprite = bonus_arr[int(rand_range(0, bonus_arr.size() - 0.01))].instance()
+	bonus.global_position = Vector2(rand_range(-300, 300), -480)
+	self.add_child(bonus)
 
 
 func viewport_resized() -> void:

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 38, 38 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["PlayerNode"]]
 position = Vector2( 360, 1140 )
 script = ExtResource( 1 )
 __meta__ = {

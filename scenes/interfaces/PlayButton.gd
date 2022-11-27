@@ -4,6 +4,7 @@ extends ScaledButton
 onready var bar: ProgressBar = $ProgressBar
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var label: Label = $Label
+onready var price: Label = $Price
 
 var default_style: StyleBoxFlat = load('res://resources/themes/BarStyle.tres')
 var style: StyleBoxFlat 
@@ -58,7 +59,9 @@ func _process(_delta: float) -> void:
 		is_avaiable = target_value == 1
 		if is_avaiable:
 			target_color = avaible_color
+			price.text = Global.cut_number(Global.player_dic[Global.selected_player].price)
 		else:
+			price.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(Global.player_dic[Global.selected_player].price)
 			target_color = not_avaible_color
 			
 		if once: 
