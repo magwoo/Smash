@@ -6,12 +6,15 @@ onready var name_text: Label = $TextMargin/Name
 onready var level_text: Label = $TextMargin/Level
 onready var cost_text: Label = $TextMargin/Cost
 onready var anim: AnimationPlayer = $AnimationPlayer
+onready var video: Sprite = $Video
+onready var video_packed: PackedScene = load('res://scenes/interfaces/UpgradeVideo.tscn')
 
 var default_style: StyleBoxFlat = load('res://resources/themes/BarStyle.tres')
 var style: StyleBoxFlat 
 
 const not_avaible_color: Color = Color(0.37, 0.37, 0.37)
 const avaible_color: Color = Color(0.94, 0.66, 0.34)
+const video_color: Color = Color(0.4, 0.65, 0.35)
 
 export(int) var buy_cost: int = 0
 export(int, 1, 4) var index: int = 1
@@ -21,6 +24,7 @@ var target_color: Color = Color()
 var value: float = 0
 var cost: int = 1
 var is_avaiable: bool = false
+var video_avaible: bool = false
 
 
 func _ready() -> void:
@@ -35,20 +39,31 @@ func _process(_delta: float) -> void:
 	value = lerp(value, target_value, Global.lerp_index)
 	bar.value = value + 0.2
 	style.bg_color = lerp(style.bg_color, target_color, Global.lerp_index)
+	if video.visible:
+		video.rotation = deg2rad(Global.asint * 10 + 15)
 	
 
 func _pressed() -> void:
 	if Global.balance >= cost:
 		Global.reduce_balance(cost)
-		Global.upgrades[index - 1] += 1
-		var particle: CPUParticles2D = Global.buy_particle_packed.instance()
-		particle.position = self.rect_pivot_offset
-		particle.emission_rect_extents = self.rect_size / 2
-		self.add_child(particle)
-		particle.emitting = true
+		upgrade()
 	else:
-		anim.stop()
-		anim.play('buy_not_avaible')
+		if video_avaible:
+			var video: CanvasLayer = video_packed.instance()
+			video.selected_button = self
+			$'/root'.add_child(video)
+		else:
+			anim.stop()
+			anim.play('buy_not_avaible')
+
+
+func upgrade() -> void:
+	Global.upgrades[index - 1] += 1
+	var particle: CPUParticles2D = Global.buy_particle_packed.instance()
+	particle.position = self.rect_pivot_offset
+	particle.emission_rect_extents = self.rect_size / 2
+	self.add_child(particle)
+	particle.emitting = true
 
 
 func _update_all(balance: int = 0) -> void:
@@ -56,6 +71,7 @@ func _update_all(balance: int = 0) -> void:
 
 
 func update_all() -> void:
+	video.visible = false
 	cost = buy_cost * pow(Global.upgrades[index - 1], 2)
 	cost_text.text = Global.cut_number(cost)
 	level_text.text = 'УРОВЕНЬ ' + str(Global.upgrades[index - 1])
@@ -64,5 +80,11 @@ func update_all() -> void:
 	if is_avaiable:
 		target_color = avaible_color
 	else:
-		target_color = not_avaible_color
+		if video_avaible:
+			target_color = video_color
+			target_value = 1
+			video.visible = true
+		else:
+			target_color = not_avaible_color
+		
 	

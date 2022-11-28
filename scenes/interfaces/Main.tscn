@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://global/ScaledButtonClass.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/SwitchPlayerIcon.svg" type="Texture" id=2]
 [ext_resource path="res://resources/images/SwitchPlayerIcon2.svg" type="Texture" id=3]
 [ext_resource path="res://resources/images/PlayerSkins/Player.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/interfaces/HighScoreText.gd" type="Script" id=5]
+[ext_resource path="res://resources/images/VideoIcon.svg" type="Texture" id=6]
 [ext_resource path="res://resources/images/SettingsIcon.svg" type="Texture" id=7]
 [ext_resource path="res://resources/images/HighScoreIcon.svg" type="Texture" id=8]
 [ext_resource path="res://resources/themes/DefaultTheme.tres" type="Theme" id=9]
@@ -19,8 +20,6 @@
 [ext_resource path="res://resources/themes/BarStyle.tres" type="StyleBox" id=18]
 [ext_resource path="res://scenes/interfaces/SettingsButton.gd" type="Script" id=19]
 [ext_resource path="res://scenes/interfaces/MainMargin.gd" type="Script" id=20]
-[ext_resource path="res://scenes/interfaces/MainMenu.gd" type="Script" id=21]
-[ext_resource path="res://scenes/interfaces/Settings.tscn" type="PackedScene" id=22]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.0980392 )
@@ -239,11 +238,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -360.0
 margin_right = 360.0
-script = ExtResource( 21 )
 
-[node name="MainMenu" type="CanvasLayer" parent="."]
-
-[node name="MainMargin" type="MarginContainer" parent="MainMenu"]
+[node name="MainMargin" type="MarginContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -257,12 +253,12 @@ custom_constants/margin_left = 32
 custom_constants/margin_bottom = 32
 script = ExtResource( 20 )
 
-[node name="MainVBox" type="VBoxContainer" parent="MainMenu/MainMargin"]
+[node name="MainVBox" type="VBoxContainer" parent="MainMargin"]
 margin_left = 32.0
 margin_right = 688.0
 margin_bottom = 1248.0
 
-[node name="Info" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox"]
+[node name="Info" type="MarginContainer" parent="MainMargin/MainVBox"]
 margin_top = 12.0
 margin_right = 656.0
 margin_bottom = 152.0
@@ -273,7 +269,7 @@ custom_constants/margin_top = 48
 custom_constants/margin_left = 32
 custom_constants/margin_bottom = 32
 
-[node name="InfoBackground" type="Panel" parent="MainMenu/MainMargin/MainVBox/Info"]
+[node name="InfoBackground" type="Panel" parent="MainMargin/MainVBox/Info"]
 margin_left = 32.0
 margin_top = 48.0
 margin_right = 624.0
@@ -281,7 +277,7 @@ margin_bottom = 108.0
 rect_min_size = Vector2( 0, 60 )
 custom_styles/panel = SubResource( 1 )
 
-[node name="InfoMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Info"]
+[node name="InfoMargin" type="MarginContainer" parent="MainMargin/MainVBox/Info"]
 margin_left = 32.0
 margin_top = 48.0
 margin_right = 624.0
@@ -289,24 +285,24 @@ margin_bottom = 108.0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
 
-[node name="InfoHBox" type="HBoxContainer" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin"]
+[node name="InfoHBox" type="HBoxContainer" parent="MainMargin/MainVBox/Info/InfoMargin"]
 margin_left = 16.0
 margin_right = 576.0
 margin_bottom = 60.0
 
-[node name="HighScoreIcon" type="TextureRect" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="HighScoreIcon" type="TextureRect" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_right = 40.0
 margin_bottom = 60.0
 texture = ExtResource( 8 )
 stretch_mode = 4
 
-[node name="HighScoreSpace" type="Control" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="HighScoreSpace" type="Control" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_left = 44.0
 margin_right = 52.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 8, 0 )
 
-[node name="HighScoreText" type="Label" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="HighScoreText" type="Label" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_left = 56.0
 margin_top = 13.0
 margin_right = 168.0
@@ -315,7 +311,7 @@ theme = ExtResource( 9 )
 text = "123123"
 script = ExtResource( 5 )
 
-[node name="BalanceIcon" type="TextureRect" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="BalanceIcon" type="TextureRect" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_left = 394.0
 margin_right = 432.0
 margin_bottom = 60.0
@@ -323,13 +319,13 @@ size_flags_horizontal = 10
 texture = ExtResource( 10 )
 stretch_mode = 4
 
-[node name="BalanceSpace" type="Control" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="BalanceSpace" type="Control" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_left = 436.0
 margin_right = 444.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 8, 0 )
 
-[node name="BalanceText" type="Label" parent="MainMenu/MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
+[node name="BalanceText" type="Label" parent="MainMargin/MainVBox/Info/InfoMargin/InfoHBox"]
 margin_left = 448.0
 margin_top = 13.0
 margin_right = 560.0
@@ -339,7 +335,7 @@ theme = ExtResource( 9 )
 text = "123123"
 script = ExtResource( 11 )
 
-[node name="Player" type="HBoxContainer" parent="MainMenu/MainMargin/MainVBox"]
+[node name="Player" type="HBoxContainer" parent="MainMargin/MainVBox"]
 margin_top = 172.0
 margin_right = 656.0
 margin_bottom = 492.0
@@ -347,7 +343,7 @@ rect_min_size = Vector2( 0, 320 )
 size_flags_vertical = 6
 script = ExtResource( 14 )
 
-[node name="PreviusButton" type="Button" parent="MainMenu/MainMargin/MainVBox/Player"]
+[node name="PreviusButton" type="Button" parent="MainMargin/MainVBox/Player"]
 margin_right = 215.0
 margin_bottom = 320.0
 focus_mode = 0
@@ -360,7 +356,7 @@ script = ExtResource( 1 )
 focus_scale = 1.15
 press_scale = 0.95
 
-[node name="PlayerPreview" type="TextureRect" parent="MainMenu/MainMargin/MainVBox/Player" groups=["player_icon"]]
+[node name="PlayerPreview" type="TextureRect" parent="MainMargin/MainVBox/Player" groups=["player_icon"]]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 219.0
 margin_right = 436.0
@@ -369,7 +365,7 @@ mouse_filter = 0
 texture = ExtResource( 4 )
 stretch_mode = 4
 
-[node name="NextButton" type="Button" parent="MainMenu/MainMargin/MainVBox/Player"]
+[node name="NextButton" type="Button" parent="MainMargin/MainVBox/Player"]
 margin_left = 440.0
 margin_right = 656.0
 margin_bottom = 320.0
@@ -384,7 +380,7 @@ script = ExtResource( 1 )
 focus_scale = 1.15
 press_scale = 0.95
 
-[node name="Upgrade" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox"]
+[node name="Upgrade" type="MarginContainer" parent="MainMargin/MainVBox"]
 margin_top = 500.0
 margin_right = 656.0
 margin_bottom = 1092.0
@@ -395,7 +391,7 @@ custom_constants/margin_top = 32
 custom_constants/margin_bottom = 32
 script = ExtResource( 15 )
 
-[node name="UpgradeGrid" type="VBoxContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade"]
+[node name="UpgradeGrid" type="VBoxContainer" parent="MainMargin/MainVBox/Upgrade"]
 margin_left = 8.0
 margin_top = 32.0
 margin_right = 648.0
@@ -403,7 +399,7 @@ margin_bottom = 560.0
 size_flags_horizontal = 4
 custom_constants/separation = 16
 
-[node name="UpgradeButton1" type="Button" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid"]
+[node name="UpgradeButton1" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_right = 640.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 640, 120 )
@@ -416,7 +412,7 @@ expand_icon = true
 script = ExtResource( 17 )
 buy_cost = 400
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -426,7 +422,7 @@ max_value = 1.2
 value = 1.0
 percent_visible = false
 
-[node name="TextMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
+[node name="TextMargin" type="MarginContainer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -435,7 +431,7 @@ custom_constants/margin_top = 4
 custom_constants/margin_left = 48
 custom_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
+[node name="Name" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -445,7 +441,7 @@ custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "УРОН"
 
-[node name="Level" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
+[node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -456,7 +452,7 @@ custom_fonts/font = SubResource( 6 )
 text = "УРОВЕНЬ 1"
 valign = 2
 
-[node name="Cost" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
+[node name="Cost" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -468,12 +464,17 @@ text = "1.25K/1.5K"
 align = 2
 valign = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
 playback_speed = 4.0
 anims/RESET = SubResource( 8 )
 anims/buy_not_avaible = SubResource( 9 )
 
-[node name="UpgradeButton2" type="Button" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid"]
+[node name="Video" type="Sprite" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1"]
+position = Vector2( 600, 6 )
+rotation = 0.261799
+texture = ExtResource( 6 )
+
+[node name="UpgradeButton2" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_top = 136.0
 margin_right = 640.0
 margin_bottom = 256.0
@@ -488,7 +489,7 @@ script = ExtResource( 17 )
 buy_cost = 100
 index = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -498,7 +499,7 @@ max_value = 1.2
 value = 1.0
 percent_visible = false
 
-[node name="TextMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
+[node name="TextMargin" type="MarginContainer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -507,7 +508,7 @@ custom_constants/margin_top = 4
 custom_constants/margin_left = 48
 custom_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
+[node name="Name" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -517,7 +518,7 @@ custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "ТЕМП СТРЕЛЬБЫ"
 
-[node name="Level" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
+[node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -528,7 +529,7 @@ custom_fonts/font = SubResource( 6 )
 text = "УРОВЕНЬ 1"
 valign = 2
 
-[node name="Cost" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
+[node name="Cost" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -540,12 +541,17 @@ text = "1.25K/1.5K"
 align = 2
 valign = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
 playback_speed = 4.0
 anims/RESET = SubResource( 10 )
 anims/buy_not_avaible = SubResource( 11 )
 
-[node name="UpgradeButton3" type="Button" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid"]
+[node name="Video" type="Sprite" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2"]
+position = Vector2( 600, 6 )
+rotation = 0.261799
+texture = ExtResource( 6 )
+
+[node name="UpgradeButton3" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_top = 272.0
 margin_right = 640.0
 margin_bottom = 392.0
@@ -561,7 +567,7 @@ script = ExtResource( 17 )
 buy_cost = 200
 index = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -571,7 +577,7 @@ max_value = 1.2
 value = 1.0
 percent_visible = false
 
-[node name="TextMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
+[node name="TextMargin" type="MarginContainer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -580,7 +586,7 @@ custom_constants/margin_top = 4
 custom_constants/margin_left = 48
 custom_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
+[node name="Name" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -590,7 +596,7 @@ custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "ВРЕМЯ БОНУСА"
 
-[node name="Level" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
+[node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -601,7 +607,7 @@ custom_fonts/font = SubResource( 6 )
 text = "УРОВЕНЬ 1"
 valign = 2
 
-[node name="Cost" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
+[node name="Cost" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -613,12 +619,17 @@ text = "1.25K/1.5K"
 align = 2
 valign = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
 playback_speed = 4.0
 anims/RESET = SubResource( 12 )
 anims/buy_not_avaible = SubResource( 13 )
 
-[node name="UpgradeButton4" type="Button" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid"]
+[node name="Video" type="Sprite" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3"]
+position = Vector2( 600, 6 )
+rotation = 0.261799
+texture = ExtResource( 6 )
+
+[node name="UpgradeButton4" type="Button" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid"]
 margin_top = 408.0
 margin_right = 640.0
 margin_bottom = 528.0
@@ -633,7 +644,7 @@ script = ExtResource( 17 )
 buy_cost = 300
 index = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -643,7 +654,7 @@ max_value = 1.2
 value = 0.31
 percent_visible = false
 
-[node name="TextMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
+[node name="TextMargin" type="MarginContainer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -652,7 +663,7 @@ custom_constants/margin_top = 4
 custom_constants/margin_left = 48
 custom_constants/margin_bottom = 4
 
-[node name="Name" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
+[node name="Name" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -662,7 +673,7 @@ custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "ШАНС БОНУСА"
 
-[node name="Level" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
+[node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -673,7 +684,7 @@ custom_fonts/font = SubResource( 6 )
 text = "УРОВЕНЬ 1"
 valign = 2
 
-[node name="Cost" type="Label" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
+[node name="Cost" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
 margin_left = 48.0
 margin_top = 4.0
 margin_right = 592.0
@@ -685,18 +696,23 @@ text = "1.25K/1.5K"
 align = 2
 valign = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
 playback_speed = 4.0
 anims/RESET = SubResource( 14 )
 anims/buy_not_avaible = SubResource( 15 )
 
-[node name="ButtomHBox" type="HBoxContainer" parent="MainMenu/MainMargin/MainVBox"]
+[node name="Video" type="Sprite" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
+position = Vector2( 600, 6 )
+rotation = 0.261799
+texture = ExtResource( 6 )
+
+[node name="ButtomHBox" type="HBoxContainer" parent="MainMargin/MainVBox"]
 margin_top = 1096.0
 margin_right = 656.0
 margin_bottom = 1247.0
 size_flags_horizontal = 5
 
-[node name="SettingsButton" type="Button" parent="MainMenu/MainMargin/MainVBox/ButtomHBox"]
+[node name="SettingsButton" type="Button" parent="MainMargin/MainVBox/ButtomHBox"]
 margin_right = 157.0
 margin_bottom = 151.0
 focus_mode = 0
@@ -706,7 +722,7 @@ icon = ExtResource( 7 )
 flat = true
 script = ExtResource( 19 )
 
-[node name="PlayButton" type="Button" parent="MainMenu/MainMargin/MainVBox/ButtomHBox"]
+[node name="PlayButton" type="Button" parent="MainMargin/MainVBox/ButtomHBox"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 161.0
 margin_right = 656.0
@@ -732,7 +748,7 @@ script = ExtResource( 12 )
 focus_scale = 1.025
 press_scale = 0.9
 
-[node name="ProgressBar" type="ProgressBar" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
+[node name="ProgressBar" type="ProgressBar" parent="MainMargin/MainVBox/ButtomHBox/PlayButton"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -743,7 +759,7 @@ max_value = 1.25
 value = 0.85
 percent_visible = false
 
-[node name="Label" type="Label" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
+[node name="Label" type="Label" parent="MainMargin/MainVBox/ButtomHBox/PlayButton"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -754,7 +770,7 @@ text = "КУПИТЬ"
 align = 1
 valign = 1
 
-[node name="Price" type="Label" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
+[node name="Price" type="Label" parent="MainMargin/MainVBox/ButtomHBox/PlayButton"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -764,15 +780,12 @@ text = "1.2K/1.85K"
 align = 1
 valign = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/MainMargin/MainVBox/ButtomHBox/PlayButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMargin/MainVBox/ButtomHBox/PlayButton"]
 playback_speed = 4.0
 anims/RESET = SubResource( 18 )
 anims/buy_not_avaible = SubResource( 19 )
 
-[node name="Node2D" type="Sprite" parent="MainMenu" groups=["PlayerSprite"]]
-position = Vector2( 360, 332 )
+[node name="Node2D" type="Sprite" parent="." groups=["PlayerSprite"]]
+position = Vector2( 356, 342 )
 texture = ExtResource( 4 )
 script = ExtResource( 13 )
-
-[node name="Settings" parent="." instance=ExtResource( 22 )]
-visible = false

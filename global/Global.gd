@@ -14,7 +14,7 @@ var lerp_index: float = 1.0
 var time: float = 0.0
 var asint: float = 0.0
 
-var balance: int = 0
+var balance: int = 100000
 var high_score: int = 0
 
 var selected_player: int = 1
@@ -147,4 +147,3 @@ func cut_number(number: float) -> String:
 	elif number_size > cut_number_dic.size():
 		return str('> 999.9' + cut_number_dic[cut_number_dic.size()]) 
 	return str(number) + cut_number_dic[number_size]
-

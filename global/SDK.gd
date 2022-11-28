@@ -84,6 +84,7 @@ func show_fullscreen_ad() -> void:
 func show_reward_ad() -> void:
 	if _is_debug:
 		print('Show reward ad successfull')
+		emit_signal('reward_closed', true)
 		return
 	if is_ready():
 		_gs.ads.showRewardedVideo()

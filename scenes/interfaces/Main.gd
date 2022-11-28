@@ -1,7 +1,7 @@
 extends Control
 
 
-var asdads: int = 5
+onready var video_packed: PackedScene = load('res://scenes/interfaces/UpgradeVideo.tscn')
 
 
 func _ready() -> void:

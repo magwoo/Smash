@@ -6,7 +6,7 @@ onready var menu_tree: MarginContainer = $MainMenu/MainMargin
 
 
 func _ready() -> void:
-	$Settings.queue_free()
+	pass
 
 
 func _process(_delta: float) -> void:

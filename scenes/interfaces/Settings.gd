@@ -4,6 +4,7 @@ extends CanvasLayer
 onready var control: Control = $Control
 
 var is_destroyed: bool = false
+var selected_button: Button
 
 
 func _ready() -> void: 
