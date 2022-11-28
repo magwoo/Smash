@@ -8,9 +8,11 @@ onready var logo: Sprite = $Logo
 
 var load_progress: float = 0
 var load_value: float = 0
+var _temp_viewport_rect: Vector2 = Vector2()
 
 
 func _ready() -> void:
+	get_tree().connect('screen_resized', self, 'update_viewport')
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(5, 20))
 	
@@ -47,3 +49,7 @@ func _process(_delta: float) -> void:
 		bar.modulate.a -= 0.5 * _delta
 	else:
 		bar.modulate.a = bar.value / 500
+
+
+func update_viewport() -> void:
+	logo.center()

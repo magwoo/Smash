@@ -640,7 +640,7 @@ mouse_filter = 2
 custom_styles/fg = ExtResource( 18 )
 custom_styles/bg = SubResource( 2 )
 max_value = 1.2
-value = 1.0
+value = 0.31
 percent_visible = false
 
 [node name="TextMargin" type="MarginContainer" parent="MainMenu/MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4"]
@@ -747,6 +747,7 @@ percent_visible = false
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -20.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 17 )
 text = "КУПИТЬ"

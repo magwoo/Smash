@@ -9,7 +9,7 @@ var step: int = 0
 
 func _ready() -> void:
 	self.modulate.a = 0
-	self.global_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 3)
+	center()
 
 
 func _input(event: InputEvent) -> void:
@@ -38,3 +38,7 @@ func _process(_delta: float) -> void:
 		self.modulate.a = max(0, self.modulate.a - 2.5 * _delta)
 	
 	self.scale = target_scale
+
+
+func center() -> void:
+	self.global_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 3)

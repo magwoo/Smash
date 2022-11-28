@@ -77,7 +77,7 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed('esc'):
+	if Input.is_action_just_pressed('esc') && OS.has_feature('debug'):
 		get_tree().quit()
 
 

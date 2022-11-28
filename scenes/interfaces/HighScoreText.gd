@@ -7,4 +7,4 @@ func _ready() -> void:
 
 
 func _high_score_changed(value: int) -> void:
-	self.text = str(value)
+	self.text = Global.cut_number(value)
