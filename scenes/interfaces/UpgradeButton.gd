@@ -26,8 +26,11 @@ var cost: int = 1
 var is_avaiable: bool = false
 var video_avaible: bool = false
 
+export var name_tag: String
+
 
 func _ready() -> void:
+	name_text.text = Global.translate(name_tag)
 	style = default_style.duplicate()
 	bar.set('custom_styles/fg', style)
 	target_color = self.modulate
@@ -73,13 +76,15 @@ func _update_all(balance: int = 0) -> void:
 func update_all() -> void:
 	video.visible = false
 	cost = buy_cost * pow(Global.upgrades[index - 1], 2)
-	cost_text.text = Global.cut_number(cost)
-	level_text.text = 'УРОВЕНЬ ' + str(Global.upgrades[index - 1])
+	cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
+	level_text.text = Global.translate('#LEVEL') + ' ' + str(Global.upgrades[index - 1])
 	target_value = min(1, Global.balance / float(cost))
 	is_avaiable = target_value == 1
 	if is_avaiable:
+		cost_text.text = Global.cut_number(cost)
 		target_color = avaible_color
 	else:
+		cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 		if video_avaible:
 			target_color = video_color
 			target_value = 1

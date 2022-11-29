@@ -42,6 +42,19 @@ func _process(_delta: float) -> void:
 	_ad_timer += _delta
 
 
+func get_language() -> String:
+	if _is_debug: return 'ru'
+	return str(_gs.language).to_lower()
+
+
+func set_language(lang: String) -> void:
+	lang = lang.to_lower()
+	if _is_debug:
+		print('Language success set ' + lang)
+		return
+	_gs.changeLanguage(lang)
+
+
 func _reward_ad_closed(args: Array) -> void:
 	var success: bool = bool(args[0])
 	emit_signal('reward_closed', success)

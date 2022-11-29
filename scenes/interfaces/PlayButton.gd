@@ -20,6 +20,8 @@ var is_avaiable: bool = false
 
 
 func _ready() -> void:
+	self.text = Global.translate('#PLAY')
+	label.text = Global.translate('#BUY')
 	style = default_style.duplicate()
 	target_color = avaible_color
 	bar.set('custom_styles/fg', style)

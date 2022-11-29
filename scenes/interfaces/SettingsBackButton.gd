@@ -1,4 +1,4 @@
-extends ScaledButton
+extends 'res://scenes/interfaces/SettingsButtonClass.gd'
 
 
 onready var tree_node: CanvasLayer = $'../../../..'

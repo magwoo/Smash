@@ -14,11 +14,12 @@ var lerp_index: float = 1.0
 var time: float = 0.0
 var asint: float = 0.0
 
-var balance: int = 100000
+var balance: int = 0
 var high_score: int = 0
 
 var selected_player: int = 1
 var is_game: bool = false
+var lang: int = 1
 
 var upgrades: Array = [1, 1, 1, 1]
 
@@ -59,13 +60,46 @@ onready var player_dic: Dictionary = {
 }
 
 
+var _lang_dic: Dictionary = {
+	'#PLAY': ['ИГРАТЬ', 'PLAY'],
+	'#DAMAGE': ['УРОН', 'DAMAGE'],
+	'#SHOOT_SPEED': ['ТЕМП СТРЕЛЬБЫ', 'SHOOT SPEED'],
+	'#BONUS_TIME': ['ВРЕМЯ БОНУСА', 'BONUS TIME'],
+	'#BONUS_CHANCE': ['ШАНС БОНУСА', 'BONUS CHANCE'],
+	'#BUY': ['КУПИТЬ', 'BUY'],
+	'#LEVEL': ['УРОВЕНЬ', 'LEVEL'],
+	'#SOUND': ['ЗВУКИ', 'SOUNDS'],
+	'#LANG': ['ЯЗЫК', 'LANG'],
+	'#EFFECTS': ['ЭФФЕКТЫ', 'EFFECTS'],
+	'#TOP': ['ТОП', 'TOP'],
+	'#BACK': ['НАЗАД', 'BACK'],
+	'#VIDEO_TOP': ['ПРОКАЧКА ЗА ВИДЕО', 'PUMPING FOR VIDEO'],
+	'#VIDEO_DISC': [
+		'получи один уровень прокачки за просмотр видео рекламы', 
+		'get a level boost for watching video ads'
+	]
+}
+
+
 func _ready() -> void:
+	self.pause_mode = Node.PAUSE_MODE_PROCESS
 	SDK.connect('cloud_ready', self, '_cloud_ready')
 	randomize()
 
 
+func translate(tag: String) -> String:
+	assert(_lang_dic.has(tag), tag + ' missing')
+	return _lang_dic[tag][lang]
+
+
 func _cloud_ready() -> void:
 	yield(get_tree().create_timer(0.05), 'timeout')
+	
+	if SDK.get_data('Lang') == -1:
+		lang = SDK.get_language() != 'ru'
+	else:
+		lang = SDK.get_data('Lang')
+			
 	set_balance(SDK.get_data('Balance'))
 	set_high_score(SDK.get_data('HighScore'))
 
