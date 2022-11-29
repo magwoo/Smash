@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 	bar.value = value + 0.2
 	style.bg_color = lerp(style.bg_color, target_color, Global.lerp_index)
 	if video.visible:
-		video.rotation = deg2rad(Global.asint * 10 + 15)
+		video.rotation = deg2rad(sin(Global.time * 3) * 10 + 15)
 	
 
 func _pressed() -> void:

@@ -7,7 +7,8 @@ var buttons: Array = []
 func _ready() -> void:
 	for i in $UpgradeGrid.get_child_count():
 		var button = $UpgradeGrid.get_child(i)
-		if Global.balance < button.buy_cost * pow(Global.upgrades[i], 2):
+		var cost: int = button.buy_cost * pow(Global.upgrades[i], 2)
+		if Global.balance < cost && Global.balance >= cost / 10:
 			buttons.append(button)
 		else:
 			if int(rand_range(0, 1.5)): button.video_avaible = true
