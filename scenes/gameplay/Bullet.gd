@@ -28,6 +28,13 @@ func _process(_delta: float) -> void:
 
 func area_entered(area: Area2D) -> void:
 	if area.is_in_group('Block'):
+		if Global.sounds:
+			var player: AudioStreamPlayer = AudioStreamPlayer.new()
+			player.connect('finished', self.get_parent(), 'remove_player', [player])
+			player.stream = Global.sound_packets.shoot
+			player.volume_db = -15
+			root.add_child(player)
+			player.play()
 		if Global.is_game:
 			root.scores += min(area.get_parent().health, damage)
 			root.label.scores_changed()

@@ -17,7 +17,6 @@ func _pressed() -> void:
 	else:
 		Global.lang = 1
 	
-	SDK.set_data('Lang', Global.lang)
-	SDK.sync_data()
+	SDK.set_data('Lang', Global.lang, true)
 	
 	get_tree().change_scene("res://scenes/interfaces/Main.tscn")

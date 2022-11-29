@@ -8,7 +8,7 @@ signal viewport_resized
 
 const _lerp_speed: float = 0.25	#lerp speed
 
-onready var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
+var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
 
 var lerp_index: float = 1.0
 var time: float = 0.0
@@ -19,7 +19,9 @@ var high_score: int = 0
 
 var selected_player: int = 1
 var is_game: bool = false
-var lang: int = 1
+var lang: int = 0
+var sounds: bool = true
+var effects: bool = true
 
 var upgrades: Array = [1, 1, 1, 1]
 
@@ -31,7 +33,7 @@ var cut_number_dic: Dictionary = {
 	5: 'Q'
 }
 
-onready var player_dic: Dictionary = {
+var player_dic: Dictionary = {
 	1: {
 		'image': load('res://resources/images/PlayerSkins/Player.svg'),
 		'price': 1000,
@@ -59,7 +61,6 @@ onready var player_dic: Dictionary = {
 	}
 }
 
-
 var _lang_dic: Dictionary = {
 	'#PLAY': ['ИГРАТЬ', 'PLAY'],
 	'#DAMAGE': ['УРОН', 'DAMAGE'],
@@ -73,11 +74,17 @@ var _lang_dic: Dictionary = {
 	'#EFFECTS': ['ЭФФЕКТЫ', 'EFFECTS'],
 	'#TOP': ['ТОП', 'TOP'],
 	'#BACK': ['НАЗАД', 'BACK'],
+	'#FREE': ['БЕСПЛАТНО', 'FREE'],
 	'#VIDEO_TOP': ['ПРОКАЧКА ЗА ВИДЕО', 'PUMPING FOR VIDEO'],
 	'#VIDEO_DISC': [
 		'получи один уровень прокачки за просмотр видео рекламы', 
 		'get a level boost for watching video ads'
 	]
+}
+
+var sound_packets: Dictionary = {
+	'shoot': load('res://resources/sounds/ShootSound.wav'),
+	'tap': load('res://resources/sounds/TapSound.wav')
 }
 
 
@@ -102,6 +109,16 @@ func _cloud_ready() -> void:
 			
 	set_balance(SDK.get_data('Balance'))
 	set_high_score(SDK.get_data('HighScore'))
+	
+	sounds = SDK.get_bool_data('Sounds')
+	effects = SDK.get_bool_data('Effects')
+	
+	upgrades = [
+		SDK.get_data('Upgrade1'),
+		SDK.get_data('Upgrade2'),
+		SDK.get_data('Upgrade3'),
+		SDK.get_data('Upgrade4')
+	]
 
 
 func _process(_delta: float) -> void:

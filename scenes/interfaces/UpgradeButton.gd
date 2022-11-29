@@ -67,6 +67,7 @@ func upgrade() -> void:
 	particle.emission_rect_extents = self.rect_size / 2
 	self.add_child(particle)
 	particle.emitting = true
+	SDK.set_data('Upgrade' + str(index), Global.upgrades[index - 1], true)
 
 
 func _update_all(balance: int = 0) -> void:
@@ -84,12 +85,14 @@ func update_all() -> void:
 		cost_text.text = Global.cut_number(cost)
 		target_color = avaible_color
 	else:
-		cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
+		
 		if video_avaible:
+			cost_text.text = Global.translate('#FREE')
 			target_color = video_color
 			target_value = 1
 			video.visible = true
 		else:
+			cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 			target_color = not_avaible_color
 		
 	
