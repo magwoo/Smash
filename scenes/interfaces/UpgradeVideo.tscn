@@ -144,6 +144,7 @@ icon = ExtResource( 4 )
 flat = true
 icon_align = 1
 script = ExtResource( 2 )
+focus_scale = 1.05
 
 [node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/Accept"]
 modulate = Color( 1, 1, 1, 0 )
