@@ -3,7 +3,7 @@ extends Node
 
 signal sync_success()
 signal cloud_ready()
-signal reward_closed(success)
+signal reward_closed()
 
 var _gs: JavaScriptObject
 var _ready: bool = false
@@ -56,8 +56,7 @@ func set_language(lang: String) -> void:
 
 
 func _reward_ad_closed(args: Array) -> void:
-	var success: bool = bool(args[0])
-	emit_signal('reward_closed', success)
+	emit_signal('reward_closed')
 
 
 func _sync_complete(args: Array) -> void:

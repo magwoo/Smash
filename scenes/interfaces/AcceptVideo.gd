@@ -20,11 +20,10 @@ func _process(_delta: float) -> void:
 		panel.modulate.a = min(1, panel.modulate.a + 2 * _delta)
 
 
-func _reward(success: bool) -> void:
-	if success:
-		$'../Cancel'._pressed()
-		Global.upgrades[0] += 1
-		root.selected_button.upgrade()
-		root.selected_button.video_avaible = false
-		root.selected_button.update_all()
+func _reward() -> void:
+	$'../Cancel'._pressed()
+	Global.upgrades[0] += 1
+	root.selected_button.upgrade()
+	root.selected_button.video_avaible = false
+	root.selected_button.update_all()
 		
