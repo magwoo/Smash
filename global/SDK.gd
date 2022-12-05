@@ -34,8 +34,6 @@ func _ready() -> void:
 	else:
 		_is_debug = true
 		_ready = false
-	
-	_ad_timer = _ad_reload_time
 
 
 func _process(_delta: float) -> void:
@@ -64,6 +62,7 @@ func _sync_complete(args: Array) -> void:
 	if success:
 		emit_signal('sync_success')
 		if !_is_cloud_ready:
+			_ad_timer = _ad_reload_time
 			_is_cloud_ready = true
 			emit_signal('cloud_ready')
 		_ready = true
@@ -79,7 +78,7 @@ func is_ready() -> bool:
 
 func show_fullscreen_ad() -> void:
 	if _ad_timer < _ad_reload_time:
-		print('Ad reloading')
+		print('Ad reloading ' + str(_ad_timer))
 		return
 	if _is_debug:
 		print('Show fullscreen ad successfull')
@@ -96,7 +95,7 @@ func show_fullscreen_ad() -> void:
 func show_reward_ad() -> void:
 	if _is_debug:
 		print('Show reward ad successfull')
-		emit_signal('reward_closed', true)
+		emit_signal('reward_closed')
 		return
 	if is_ready():
 		_gs.ads.showRewardedVideo()
