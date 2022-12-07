@@ -5,4 +5,4 @@ onready var video_packed: PackedScene = load('res://scenes/interfaces/UpgradeVid
 
 
 func _ready() -> void:
-	pass
+	Global.is_tutorial = true

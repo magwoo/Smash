@@ -27,6 +27,7 @@ func _ready() -> void:
 
 
 func spawn_level() -> void:
+	if Global.is_tutorial: return
 	var line_count: int = int(rand_range(3, 7.1))
 	
 	var line_health: Array = []

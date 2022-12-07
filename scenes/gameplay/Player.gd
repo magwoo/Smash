@@ -61,7 +61,7 @@ func viewport_resized() -> void:
 
 
 func shoot(doubled: bool = false) -> void:
-	if !Global.is_game: return
+	if !Global.is_game || Global.is_tutorial: return
 	if double_bonus == 0:
 		var bullet: Sprite = bullet_packed.instance()
 		bullet.damage = Global.upgrades[0]

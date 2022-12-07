@@ -22,6 +22,7 @@ var is_game: bool = false
 var lang: int = 0
 var sounds: bool = true
 var effects: bool = true
+var is_tutorial: bool = true
 
 var upgrades: Array = [1, 1, 1, 1]
 
