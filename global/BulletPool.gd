@@ -45,9 +45,13 @@ func return_bullet(bullet: Node) -> void:
 func _clean_queue() -> void:
 	while _return_queue.size() != 0:
 		var object: Node = _return_queue[0]
-		if object == null: _return_queue.remove(0)
+		if !is_instance_valid(object):
+			_return_queue.remove(0)
+			return
 		var par: Node = object.get_parent()
-		if par == null: _return_queue.remove(0)
+		if par == null:
+			_return_queue.remove(0)
+			return
 		par.remove_child(object)
 		_return_queue.remove(0)
 		_objects.append(object)
