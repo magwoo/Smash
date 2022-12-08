@@ -51,11 +51,11 @@ func update_color() -> void:
 func hit(damage: int) -> void:
 	health -= damage
 	label.text = Global.cut_number(max(0, health))
-	label.target_scale -= 0.15
+	label.target_scale = max(0.25, label.target_scale - 0.15)
 	update_color()
 	
 	if health <= 0:
-		spawner.diff_level += int(max(1, menu.scores / rand_range(400, 750)))
+		spawner.diff_level += int(max(1, menu.scores / 500))
 		
 		if is_star:
 			var level_arr: Array = get_tree().get_nodes_in_group(str(level_hash))
@@ -72,6 +72,7 @@ func destroy(add_balance: bool = false) -> void:
 		$'/root/Game'.label.scores_changed()
 		$'/root/Game'.label.scores_changed()
 	area.queue_free()
+	collision.remove_and_skip()
 	collision.queue_free()
 	destroyed = true
 

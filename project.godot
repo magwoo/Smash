@@ -30,6 +30,7 @@ config/icon="res://icon.png"
 
 Global="*res://global/Global.gd"
 SDK="*res://global/SDK.gd"
+Pool="*res://global/BulletPool.gd"
 
 [debug]
 

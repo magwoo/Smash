@@ -33,7 +33,7 @@ func spawn_level() -> void:
 	var line_health: Array = []
 	var line_nodes: Array = []
 	
-	var line_hash: int = int(rand_range(0, 1000000000))
+	var line_hash: int = int(current_level)
 	var bonus_num: int = -1
 	 
 	if int(rand_range(0, 1.1 + Global.upgrades[3] / 100)):
