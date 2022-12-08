@@ -24,7 +24,6 @@ func _enter_tree() -> void:
 	dir = Vector2(0, 1).rotated(ang)
 	
 
-
 func _process(_delta: float) -> void:
 	var vel: Vector2 = dir * speed
 	self.position -= vel * _delta

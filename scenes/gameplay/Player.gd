@@ -10,8 +10,6 @@ var double_bonus: float = 0.0
 var speed_bonus: float = 0.0
 var damage_bonus: float = 0.0
 
-var bullet_packed: PackedScene = load('res://scenes/gameplay/Bullet.tscn')
-
 onready var sprite: Sprite = $Sprite
 onready var area: Area2D = $PlayerArea
 onready var bullets_node: Node2D = $'../Bullets'
