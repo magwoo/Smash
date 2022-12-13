@@ -15,9 +15,11 @@ use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 72, 8 )
+extents = Vector2( 61, 8 )
 
 [node name="Block" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,9 +47,18 @@ align = 1
 valign = 1
 script = ExtResource( 4 )
 
+[node name="Bullet" type="Area2D" parent="." groups=["BulletArea"]]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+shape = SubResource( 1 )
+
 [node name="BlockArea" type="Area2D" parent="." groups=["Block"]]
 collision_layer = 8
 collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockArea"]
 position = Vector2( 0, 80 )

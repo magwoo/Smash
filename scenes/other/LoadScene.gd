@@ -10,8 +10,11 @@ var load_progress: float = 0
 var load_value: float = 0
 var _temp_viewport_rect: Vector2 = Vector2()
 
+var test: Array= [1, 2, 6, 23, 09, 12]
+
 
 func _ready() -> void:
+	
 	get_tree().connect('screen_resized', self, 'update_viewport')
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(5, 20))

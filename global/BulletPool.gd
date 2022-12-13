@@ -1,7 +1,7 @@
 extends Node
 
 
-onready var bullet_packed: PackedScene = load('res://scenes/gameplay/Bullet.tscn')
+onready var bullet_packed: PackedScene = load('res://scenes/gameplay/Bullet.tscn') as PackedScene
 
 
 var _objects: Array = []

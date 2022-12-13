@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 
 
 func area_entered(area: Area2D) -> void:
-	if area.is_in_group('Block'):
+	if area.is_in_group('BulletArea'):
 		if Global.sounds:
 			var player: AudioStreamPlayer = AudioStreamPlayer.new()
 			player.connect('finished', self.get_parent(), 'remove_player', [player])
