@@ -24,7 +24,7 @@ func update_pool(count: int, delta: float = 0.05) -> void:
 		yield(get_tree().create_timer(0.05), 'timeout')
 
 
-func clear_pool(count: int = _objects.size()):
+func clear_pool(count: int = _objects.size()) -> void:
 	if count == _objects.size(): _objects.clear()
 	else: for i in count: _objects.remove(i)
 
