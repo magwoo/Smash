@@ -23,14 +23,14 @@ func _ready() -> void:
 		while _gs == null:
 			yield(get_tree().create_timer(_error_timeout * 2), 'timeout')
 			_gs = JavaScript.get_interface('gameScore')
-		
+
 		_cb_reward_closed = JavaScript.create_callback(self, '_reward_ad_closed')
 		_cb_sync_complete = JavaScript.create_callback(self, '_sync_complete')
 		_gs.ads.on('rewarded:close', _cb_reward_closed)
 		_gs.player.on('sync', _cb_sync_complete)
-		
+
 		_gs.player.sync()
-	
+
 	else:
 		_is_debug = true
 		_ready = false
@@ -106,23 +106,23 @@ func show_reward_ad() -> void:
 
 func open_leaderboard(order_by: String = 'score', limit: int = 25, order: bool = true) -> void:
 	if _is_debug: return
-	
+
 	var arr = JavaScript.create_object('Array', 1)
 	arr[0] = order_by.to_lower()
-	
+
 	var order_str: String
 	if order: order_str = 'DESC'
 	else: order_str = 'ASC'
-	
+
 	limit = clamp(limit, 1, 100)
-	
+
 	var obj = JavaScript.create_object('Object')
 	obj.orderBy = arr
 	obj.order = order_str
 	obj.limit = limit
 	obj.displayFields = arr
 	obj.withMe = 'last'
-	
+
 	_gs.leaderboard.open(obj)
 
 

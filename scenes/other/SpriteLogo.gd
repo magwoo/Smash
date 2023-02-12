@@ -17,7 +17,7 @@ func _input(event: InputEvent) -> void:
 		is_focused = false
 	elif event is InputEventScreenTouch && !event.is_pressed():
 		is_focused = false
-	
+
 	if event is InputEventMouseMotion && Input.is_action_pressed('mouse_left'):
 		self.global_position += event.relative
 		is_focused = true
@@ -31,12 +31,12 @@ func _process(_delta: float) -> void:
 		target_scale = lerp(target_scale, Vector2(0.8, 0.8), Global.lerp_index)
 	else:
 		target_scale = lerp(target_scale, Vector2(1, 1), Global.lerp_index)
-	
+
 	if step == 1:
 		self.modulate.a = min(1, self.modulate.a + 1.5 * _delta)
 	if step == 2:
 		self.modulate.a = max(0, self.modulate.a - 2.5 * _delta)
-	
+
 	self.scale = target_scale
 
 

@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_released('mouse_left') && Global.sounds:
 		play_sound()
-	
+
 	if event is InputEventScreenTouch:
 		if !event.pressed && Global.sounds: play_sound()
 

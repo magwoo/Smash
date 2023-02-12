@@ -12,7 +12,7 @@ func _ready() -> void:
 			if Global.balance >= cost / 10: buttons.append(button)
 		else:
 			if int(rand_range(0, 1.5)): button.video_avaible = true
-	
+
 	if !buttons.size(): return
 	var temp_button = buttons[int(rand_range(0, buttons.size() - 0.01))]
 	temp_button.video_avaible = true

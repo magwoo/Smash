@@ -35,7 +35,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.is_action_pressed('mouse_left'):
 		target_position = event.relative
-	
+
 	if event is InputEventScreenDrag:
 		target_position = event.relative
 
@@ -45,11 +45,11 @@ func _process(_delta: float) -> void:
 	self.move_and_slide(target_position * (1 / _delta))
 	self.rotation = lerp(self.rotation, target_angle, Global.lerp_index)
 	target_position = Vector2()
-	
+
 	double_bonus = max(0, double_bonus - _delta)
 	damage_bonus = max(0, damage_bonus - _delta)
 	speed_bonus = max(0, speed_bonus - _delta)
-	
+
 	self.position.x = clamp(self.position.x, viewport.x / 2 -360 + size.x / 2, viewport.x / 2 + 360 - size.x / 2)
 	self.position.y = clamp(self.position.y, viewport.y / 1.5, viewport.y - size.y / 2)
 
@@ -78,7 +78,7 @@ func shoot(doubled: bool = false) -> void:
 			else:
 				bullet.ang = self.rotation + 0.2
 			bullets_node.add_child(bullet)
-	
+
 	if speed_bonus > 0 && !doubled:
 		_in_yield = true
 		yield(get_tree().create_timer(shoot_speed / 2), 'timeout')
@@ -90,17 +90,17 @@ func shoot(doubled: bool = false) -> void:
 func area_entered(area: Area2D) -> void:
 	if area.is_in_group('Block'):
 		var tree: Node2D = $'..'
-		
+
 		if tree.scores > Global.high_score:
 			Global.set_high_score(tree.scores, true)
 		Global.add_balance(tree.scores, true)
-		
+
 		SDK.show_fullscreen_ad()
 
 		Global.is_game = false
 		self.visible = false
-		
+
 		while _in_yield:
 			yield(get_tree().create_timer(0.05), 'timeout')
 		self.queue_free()
-		
+

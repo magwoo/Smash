@@ -12,24 +12,24 @@ var select_player: int = 1
 func _ready() -> void:
 	select_player = Global.selected_player
 	player.rect_pivot_offset = player.rect_size / 2
-	
+
 	previus_button.connect('pressed', self, 'previus_skin')
 	next_button.connect('pressed', self, 'next_skin')
-	
+
 	update_player()
 
 
 func previus_skin() -> void:
 	select_player = clamp(select_player - 1, 1, Global.player_dic.size())
 	player_sprite.target_angle -= 65
-	
+
 	update_player()
-	
+
 
 func next_skin() -> void:
 	select_player = clamp(select_player + 1, 1, Global.player_dic.size())
 	player_sprite.target_angle += 65
-	
+
 	update_player()
 
 

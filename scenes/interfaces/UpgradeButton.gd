@@ -10,7 +10,7 @@ onready var video: Sprite = $Video
 onready var video_packed: PackedScene = load('res://scenes/interfaces/UpgradeVideo.tscn')
 
 var default_style: StyleBoxFlat = load('res://resources/themes/BarStyle.tres')
-var style: StyleBoxFlat 
+var style: StyleBoxFlat
 
 const not_avaible_color: Color = Color(0.37, 0.37, 0.37)
 const avaible_color: Color = Color(0.94, 0.66, 0.34)
@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 	style.bg_color = lerp(style.bg_color, target_color, Global.lerp_index)
 	if video.visible:
 		video.rotation = deg2rad(sin(Global.time * 3) * 10 + 15)
-	
+
 
 func _pressed() -> void:
 	if Global.balance >= cost:
@@ -85,7 +85,7 @@ func update_all() -> void:
 		cost_text.text = Global.cut_number(cost)
 		target_color = avaible_color
 	else:
-		
+
 		if video_avaible:
 			cost_text.text = Global.translate('#FREE')
 			target_color = video_color
@@ -94,5 +94,5 @@ func update_all() -> void:
 		else:
 			cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 			target_color = not_avaible_color
-		
-	
+
+

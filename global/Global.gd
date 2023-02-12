@@ -68,7 +68,7 @@ var _lang_dic: Dictionary = {
 	'#FREE': ['БЕСПЛАТНО', 'FREE'],
 	'#VIDEO_TOP': ['ПРОКАЧКА ЗА ВИДЕО', 'PUMPING FOR VIDEO'],
 	'#VIDEO_DISC': [
-		'получи один уровень прокачки за просмотр видео рекламы', 
+		'получи один уровень прокачки за просмотр видео рекламы',
 		'get a level boost for watching video ads'
 	]
 }
@@ -92,18 +92,18 @@ func translate(tag: String) -> String:
 
 func _cloud_ready() -> void:
 	yield(get_tree().create_timer(0.05), 'timeout')
-	
+
 	if SDK.get_data('Lang') == -1:
 		lang = SDK.get_language() != 'ru'
 	else:
 		lang = SDK.get_data('Lang')
-			
+
 	set_balance(SDK.get_data('Balance'))
 	set_high_score(SDK.get_data('HighScore'))
-	
+
 	sounds = SDK.get_bool_data('Sounds')
 	effects = SDK.get_bool_data('Effects')
-	
+
 	upgrades = [
 		SDK.get_data('Upgrade1'),
 		SDK.get_data('Upgrade2'),
@@ -178,14 +178,14 @@ func cut_number(number: float) -> String:
 	while number >= 1000:
 		number /= 1000
 		number_size += 1
-	
+
 	if number < 10:
 		number = floor(number * 100) / 100
 	else:
 		number = floor(number * 10) / 10
-	
+
 	if number_size == 0:
 		return str(floor(number))
 	elif number_size > cut_number_dic.size():
-		return str('> 999.9' + cut_number_dic[cut_number_dic.size()]) 
+		return str('> 999.9' + cut_number_dic[cut_number_dic.size()])
 	return str(number) + cut_number_dic[number_size]

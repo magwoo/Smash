@@ -28,11 +28,11 @@ func _process(_delta: float) -> void:
 		target_scale = 1 + sin(Global.time / 2) / 20
 		init_angle = sin(Global.time) * 4
 		target_angle = lerp(target_angle, init_angle, Global.lerp_index)
-	
+
 	var target_scale_vec: Vector2 = Vector2(target_scale, target_scale)
-	
+
 	self.rotation_degrees = lerp(self.rotation_degrees, target_angle, Global.lerp_index)
 	self.scale = lerp(self.scale, target_scale_vec, Global.lerp_index)
 	self.global_position = lerp(self.global_position ,target_position, Global.lerp_index)
-	
-	
+
+

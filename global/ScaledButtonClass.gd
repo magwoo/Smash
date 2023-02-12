@@ -17,10 +17,10 @@ func _ready() -> void:
 	self.connect('mouse_exited', self, '_unfocused')
 	self.connect('button_down', self, '_button_down')
 	self.connect('button_up', self, '_unpressed')
-	
+
 	self.rect_pivot_offset = self.rect_size / 2
 	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	
+
 
 func _process(_delta: float) -> void:
 	self.rect_scale = lerp(self.rect_scale, target_scale, Global.lerp_index)
@@ -31,11 +31,11 @@ func _input(event: InputEvent) -> void:
 		if !event.pressed:
 			target_scale = Vector2(1.0, 1.0)
 			focused = false
-			
+
 
 func _button_down() -> void:
 	target_scale = Vector2(press_scale, press_scale)
-	
+
 
 func _unpressed() -> void:
 	if focused:
