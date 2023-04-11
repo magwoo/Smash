@@ -10,6 +10,8 @@ var target_scale: Vector2 = Vector2(1.0, 1.0)
 var focused: bool = false
 var touched: bool = false
 
+var tween: Tween = Tween.new()
+
 
 func _ready() -> void:
 	self.connect('resized', self, '_resized')
@@ -18,41 +20,52 @@ func _ready() -> void:
 	self.connect('button_down', self, '_button_down')
 	self.connect('button_up', self, '_unpressed')
 
+	tween.name = 'TweenAnimator'
+	self.add_child(tween)
+
 	self.rect_pivot_offset = self.rect_size / 2
 	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 
-func _process(_delta: float) -> void:
-	self.rect_scale = lerp(self.rect_scale, target_scale, Global.lerp_index)
+#func _process(_delta: float) -> void:
+#	self.rect_scale = lerp(self.rect_scale, target_scale, Global.lerp_index)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if !event.pressed:
-			target_scale = Vector2(1.0, 1.0)
+			animate(Vector2(1.0, 1.0))
 			focused = false
 
 
 func _button_down() -> void:
-	target_scale = Vector2(press_scale, press_scale)
+	animate(Vector2(press_scale, press_scale))
 
 
 func _unpressed() -> void:
 	if focused:
-		target_scale = Vector2(focus_scale, focus_scale)
+		animate(Vector2(focus_scale, focus_scale))
 	else:
-		target_scale = Vector2(1.0, 1.0)
+		animate(Vector2(1.0, 1.0))
 
 
 func _focused() -> void:
-	target_scale = Vector2(focus_scale, focus_scale)
+	animate(Vector2(focus_scale, focus_scale))
 	focused = true
 
 
 func _unfocused() -> void:
-	target_scale = Vector2(1.0, 1.0)
+	animate(Vector2(1.0, 1.0))
 	focused = false
 
 
 func _resized() -> void:
 	self.rect_pivot_offset = self.rect_size / 2
+
+
+func animate(target_scale: Vector2) -> void:
+	tween.interpolate_property(
+		self, 'rect_scale', self.rect_scale, target_scale, 0.125,
+		Tween.TRANS_BACK, Tween.EASE_OUT
+	)
+	tween.start()

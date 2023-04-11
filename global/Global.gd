@@ -1,12 +1,12 @@
 extends Node
 
-signal high_score_changed
-signal balance_changed
-signal game_mode_changed
-signal viewport_resized
+signal high_score_changed()
+signal balance_changed()
+signal game_mode_changed()
+signal viewport_resized()
 
 
-const _lerp_speed: float = 0.25	#lerp speed
+const LERP_SPEED: float = 0.25
 
 var buy_particle_packed: PackedScene = load('res://scenes/other/BuyParticles.tscn')
 
@@ -114,7 +114,7 @@ func _cloud_ready() -> void:
 
 func _process(_delta: float) -> void:
 	time += _delta
-	lerp_index = _lerp_speed * _delta * 60
+	lerp_index = LERP_SPEED * _delta * 60
 	asint = sin(time)
 
 
@@ -124,7 +124,7 @@ func _input(event: InputEvent) -> void:
 
 
 static func get_lerp_speed() -> float:
-	return 0.25
+	return LERP_SPEED
 
 
 func reload_info() -> void:
