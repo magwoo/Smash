@@ -23,10 +23,10 @@ func _ready() -> void:
 
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_destroyed:
-		control.modulate.a -= FADE_SPEED * _delta
+		control.modulate.a -= FADE_SPEED * delta
 		if control.modulate.a < 0.0: self.queue_free()
 	else:
-		control.modulate.a += FADE_SPEED * _delta
+		control.modulate.a += FADE_SPEED * delta
 		control.modulate.a = min(1.0, control.modulate.a)

@@ -19,9 +19,9 @@ const video_color: Color = Color(0.4, 0.65, 0.35)
 export(int) var buy_cost: int = 0
 export(int, 1, 4) var index: int = 1
 
-var target_value: float = 0
+var target_value: float = 0.0
 var target_color: Color = Color()
-var value: float = 0
+var value: float = 0.0
 var cost: int = 1
 var is_avaiable: bool = false
 var video_avaible: bool = false
@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 	bar.value = value + 0.2
 	style.bg_color = lerp(style.bg_color, target_color, Global.lerp_index)
 	if video.visible:
-		video.rotation = deg2rad(sin(Global.time * 3) * 10 + 15)
+		video.rotation = deg2rad(sin(Global.time * 3.0) * 10.0 + 15.0)
 
 
 func _pressed() -> void:
@@ -64,7 +64,7 @@ func upgrade() -> void:
 	Global.upgrades[index - 1] += 1
 	var particle: CPUParticles2D = Global.buy_particle_packed.instance()
 	particle.position = self.rect_pivot_offset
-	particle.emission_rect_extents = self.rect_size / 2
+	particle.emission_rect_extents = self.rect_size / 2.0
 	self.add_child(particle)
 	particle.emitting = true
 	SDK.set_data('Upgrade' + str(index), Global.upgrades[index - 1], true)
@@ -76,16 +76,15 @@ func _update_all(balance: int = 0) -> void:
 
 func update_all() -> void:
 	video.visible = false
-	cost = buy_cost * pow(Global.upgrades[index - 1], 2)
+	cost = buy_cost * pow(Global.upgrades[index - 1], 2.0)
 	cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 	level_text.text = Global.translate('#LEVEL') + ' ' + str(Global.upgrades[index - 1])
-	target_value = min(1, Global.balance / float(cost))
+	target_value = min(1.0, Global.balance / float(cost))
 	is_avaiable = target_value == 1
 	if is_avaiable:
 		cost_text.text = Global.cut_number(cost)
 		target_color = avaible_color
 	else:
-
 		if video_avaible:
 			cost_text.text = Global.translate('#FREE')
 			target_color = video_color
@@ -94,5 +93,3 @@ func update_all() -> void:
 		else:
 			cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 			target_color = not_avaible_color
-
-
