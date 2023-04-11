@@ -68,20 +68,22 @@ func shoot(doubled: bool = false) -> void:
 		var bullet: Sprite = Pool.get_bullet()
 		bullet.damage = Global.upgrades[0]
 		if damage_bonus > 0: bullet.damage *= 2
+
 		bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
 		bullet.ang = self.rotation
+
 		bullets_node.add_child(bullet)
-	else:
-		for i in 2:
-			var bullet: Sprite = Pool.get_bullet()
-			bullet.damage = Global.upgrades[0]
-			if damage_bonus > 0: bullet.damage *= 2
-			bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
-			if i == 0:
-				bullet.ang = self.rotation - 0.2
-			else:
-				bullet.ang = self.rotation + 0.2
-			bullets_node.add_child(bullet)
+
+	else: for i in 2:
+		var bullet: Sprite = Pool.get_bullet()
+		bullet.damage = Global.upgrades[0]
+		if damage_bonus > 0: bullet.damage *= 2
+
+		bullet.position = Vector2(self.position.x ,self.position.y - size.y / 2.5)
+		if i == 0: bullet.ang = self.rotation - 0.2
+		else: bullet.ang = self.rotation + 0.2
+
+		bullets_node.add_child(bullet)
 
 	if speed_bonus > 0 && !doubled:
 		_in_yield = true
