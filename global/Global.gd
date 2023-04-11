@@ -81,7 +81,9 @@ var sound_packets: Dictionary = {
 
 func _ready() -> void:
 	self.pause_mode = Node.PAUSE_MODE_PROCESS
+
 	SDK.connect('cloud_ready', self, '_cloud_ready')
+
 	randomize()
 
 
@@ -93,10 +95,8 @@ func translate(tag: String) -> String:
 func _cloud_ready() -> void:
 	yield(get_tree().create_timer(0.05), 'timeout')
 
-	if SDK.get_data('Lang') == -1:
-		lang = SDK.get_language() != 'ru'
-	else:
-		lang = SDK.get_data('Lang')
+	if SDK.get_data('Lang') == -1: lang = SDK.get_language() != 'ru'
+	else: lang = SDK.get_data('Lang')
 
 	set_balance(SDK.get_data('Balance'))
 	set_high_score(SDK.get_data('HighScore'))
@@ -141,51 +141,53 @@ func set_balance(value: int, sync_after_set: bool = false) -> void:
 	balance = max(0, value)
 	SDK.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
+
 	assert(value >= 0, 'set balance < 0')
-	if sync_after_set:
-		SDK.sync_data()
+
+	if sync_after_set: SDK.sync_data()
 
 
 func add_balance(amount: int, sync_after_add: bool = false) -> void:
 	balance += max(0, amount)
 	SDK.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
+
 	assert(amount >= 0, 'add balance < 0')
-	if sync_after_add:
-		SDK.sync_data()
+
+	if sync_after_add: SDK.sync_data()
 
 
 func reduce_balance(amount: int, sync_after_reduce: bool = false) -> void:
 	balance -= max(0, amount)
 	SDK.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
+
 	assert(amount >= 0, 'reduce balance < 0')
-	if sync_after_reduce:
-		SDK.sync_data()
+
+	if sync_after_reduce: SDK.sync_data()
 
 
 func set_high_score(value: int, sync_after_set: bool = false) -> void:
 	high_score = max(0, value)
 	SDK.set_data('HighScore', high_score)
 	emit_signal('high_score_changed', high_score)
+
 	assert(value >= 0, 'set high score < 0')
-	if sync_after_set:
-		SDK.sync_data()
+
+	if sync_after_set: SDK.sync_data()
 
 
 func cut_number(number: float) -> String:
 	var number_size: int = 0
-	while number >= 1000:
-		number /= 1000
+	while number >= 1000.0:
+		number /= 1000.0
 		number_size += 1
 
-	if number < 10:
-		number = floor(number * 100) / 100
-	else:
-		number = floor(number * 10) / 10
+	if number < 10: number = floor(number * 100.0) / 100.0
+	else: number = floor(number * 10.0) / 10.0
 
-	if number_size == 0:
-		return str(floor(number))
+	if number_size == 0: return str(floor(number))
 	elif number_size > cut_number_dic.size():
 		return str('> 999.9' + cut_number_dic[cut_number_dic.size()])
+
 	return str(number) + cut_number_dic[number_size]
