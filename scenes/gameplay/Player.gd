@@ -41,8 +41,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	target_angle = target_position.x / 35
-	self.move_and_slide(target_position * (1 / _delta))
+	target_angle = target_position.x / 35.0
+	self.move_and_slide(target_position * (1.0 / _delta))
 	self.rotation = lerp(self.rotation, target_angle, Global.lerp_index)
 	target_position = Vector2()
 
@@ -50,8 +50,12 @@ func _process(_delta: float) -> void:
 	damage_bonus = max(0, damage_bonus - _delta)
 	speed_bonus = max(0, speed_bonus - _delta)
 
-	self.position.x = clamp(self.position.x, viewport.x / 2 -360 + size.x / 2, viewport.x / 2 + 360 - size.x / 2)
-	self.position.y = clamp(self.position.y, viewport.y / 1.5, viewport.y - size.y / 2)
+	self.position.x = clamp(
+		self.position.x, viewport.x / 2.0 -360 + size.x / 2.0, viewport.x / 2.0 + 360 - size.x / 2.0
+	)
+	self.position.y = clamp(
+		self.position.y, viewport.y / 1.5, viewport.y - size.y / 2.0
+	)
 
 
 func viewport_resized() -> void:
@@ -100,7 +104,5 @@ func area_entered(area: Area2D) -> void:
 		Global.is_game = false
 		self.visible = false
 
-		while _in_yield:
-			yield(get_tree().create_timer(0.05), 'timeout')
+		while _in_yield: yield(get_tree().create_timer(0.05), 'timeout')
 		self.queue_free()
-
