@@ -5,7 +5,7 @@
 [ext_resource path="res://resources/images/CancelIcon.svg" type="Texture" id=3]
 [ext_resource path="res://resources/images/AcceptIcon.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/interfaces/VideoLangSet.gd" type="Script" id=5]
-[ext_resource path="res://scenes/interfaces/Settings.gd" type="Script" id=9]
+[ext_resource path="res://scenes/interfaces/PopupAnimation.gd" type="Script" id=9]
 [ext_resource path="res://resources/fonts/Rubik-Black.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=19]

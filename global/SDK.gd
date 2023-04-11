@@ -22,7 +22,7 @@ func _ready() -> void:
 	if OS.has_feature('JavaScript'):
 		while _gs == null:
 			yield(get_tree().create_timer(_error_timeout * 2), 'timeout')
-			_gs = JavaScript.get_interface('gameScore')
+			_gs = JavaScript.get_interface('SDK')
 
 		_cb_reward_closed = JavaScript.create_callback(self, '_reward_ad_closed')
 		_cb_sync_complete = JavaScript.create_callback(self, '_sync_complete')
@@ -71,8 +71,7 @@ func _sync_complete(args: Array) -> void:
 
 
 func is_ready() -> bool:
-	if _is_debug:
-		return true
+	if _is_debug: return true
 	return _ready
 
 
@@ -82,11 +81,11 @@ func show_fullscreen_ad() -> void:
 		return
 	if _is_debug:
 		print('Show fullscreen ad successfull')
-		_ad_timer = 0
+		_ad_timer = 0.0
 		return
 	if is_ready():
 		_gs.ads.showFullscreen()
-		_ad_timer = 0
+		_ad_timer = 0.0
 	else:
 		yield(get_tree().create_timer(_error_timeout), 'timeout')
 		show_fullscreen_ad()
@@ -114,7 +113,7 @@ func open_leaderboard(order_by: String = 'score', limit: int = 25, order: bool =
 	if order: order_str = 'DESC'
 	else: order_str = 'ASC'
 
-	limit = clamp(limit, 1, 100)
+	limit = clamp(limit, 1.0, 100.0)
 
 	var obj = JavaScript.create_object('Object')
 	obj.orderBy = arr
@@ -130,8 +129,7 @@ func sync_data() -> void:
 	if _is_debug:
 		print('Sync successfull')
 		return
-	if is_ready():
-		_gs.player.sync()
+	if is_ready(): _gs.player.sync()
 	else:
 		yield(get_tree().create_timer(_error_timeout), 'timeout')
 		sync_data()
@@ -144,8 +142,7 @@ func set_data(key: String, value: float, sync_after_set: bool = false) -> void:
 	key = key.to_lower()
 	if is_ready():
 		_gs.player.set(key, value)
-		if sync_after_set:
-			sync_data()
+		if sync_after_set: sync_data()
 	else:
 		yield(get_tree().create_timer(_error_timeout), 'timeout')
 		set_data(key, value, sync_after_set)
@@ -158,8 +155,7 @@ func set_string_data(key: String, value: String, sync_after_set: bool = false) -
 	key = key.to_lower()
 	if is_ready():
 		_gs.player.set(key, value)
-		if sync_after_set:
-			sync_data()
+		if sync_after_set: sync_data()
 	else:
 		yield(get_tree().create_timer(_error_timeout), 'timeout')
 		set_string_data(key, value, sync_after_set)
@@ -182,13 +178,10 @@ func set_bool_data(key: String, value: bool, sync_after_set: bool = false) -> vo
 func get_data(key: String) -> float:
 	if _is_debug:
 		print('Get data ' + str(key) + ' successfull')
-		return .0
+		return 0.0
 	key = key.to_lower()
-	print(key)
-	if is_ready():
-		return float(_gs.player.get(key))
-	else:
-		return .0
+	if is_ready(): return float(_gs.player.get(key))
+	else: return 0.0
 
 
 func get_string_data(key: String) -> String:
@@ -196,10 +189,8 @@ func get_string_data(key: String) -> String:
 		print('Get data ' + str(key) + ' successfull')
 		return ''
 	key = key.to_lower()
-	if is_ready():
-		return str(_gs.player.get(key))
-	else:
-		return ''
+	if is_ready(): return str(_gs.player.get(key))
+	else: return ''
 
 
 func get_bool_data(key: String) -> bool:
@@ -207,7 +198,5 @@ func get_bool_data(key: String) -> bool:
 		print('Get data ' + str(key) + ' successfull')
 		return false
 	key = key.to_lower()
-	if is_ready():
-		return bool(_gs.player.get(key))
-	else:
-		return false
+	if is_ready(): return bool(_gs.player.get(key))
+	else: return false
