@@ -4,6 +4,7 @@ signal high_score_changed()
 signal balance_changed()
 signal game_mode_changed()
 signal viewport_resized()
+signal lang_changed()
 
 
 const LERP_SPEED: float = 0.25
@@ -19,7 +20,7 @@ var high_score: int = 0
 
 var selected_player: int = 1
 var is_game: bool = false
-var lang: int = 0
+var lang: int = 0 setget _change_lang
 var sounds: bool = true
 var effects: bool = true
 var is_tutorial: bool = true
@@ -191,3 +192,8 @@ func cut_number(number: float) -> String:
 		return str('> 999.9' + cut_number_dic[cut_number_dic.size()])
 
 	return str(number) + cut_number_dic[number_size]
+
+
+func _change_lang(value: int) -> void:
+	lang = value
+	emit_signal('lang_changed')

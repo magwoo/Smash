@@ -2,7 +2,6 @@ extends ScaledButton
 
 
 onready var bar: ProgressBar = $ProgressBar
-onready var name_text: Label = $TextMargin/Name
 onready var level_text: Label = $TextMargin/Level
 onready var cost_text: Label = $TextMargin/Cost
 onready var anim: AnimationPlayer = $AnimationPlayer
@@ -34,6 +33,7 @@ func _ready() -> void:
 	bar.set('custom_styles/fg', style)
 	target_color = self.modulate
 	update_all()
+	Global.connect('lang_changed', self, '_lang_changed')
 	Global.connect('balance_changed', self, '_update_all')
 
 
@@ -77,7 +77,7 @@ func update_all() -> void:
 	video.visible = false
 	cost = buy_cost * pow(Global.upgrades[index - 1], 2.0)
 	cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
-	level_text.text = Global.translate('#LEVEL') + ' ' + str(Global.upgrades[index - 1])
+	level_text.text = self.tr('#LEVEL') + ' ' + str(Global.upgrades[index - 1])
 	target_value = min(1.0, Global.balance / float(cost))
 	is_avaiable = target_value == 1
 	if is_avaiable:
@@ -92,3 +92,7 @@ func update_all() -> void:
 		else:
 			cost_text.text = Global.cut_number(Global.balance) + '/' + Global.cut_number(cost)
 			target_color = not_avaible_color
+
+
+func _lang_changed() -> void:
+	level_text.text = self.tr('#LEVEL') + ' ' + str(Global.upgrades[index - 1])

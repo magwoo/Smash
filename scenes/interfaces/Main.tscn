@@ -518,7 +518,7 @@ margin_bottom = 116.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
-text = "ТЕМП СТРЕЛЬБЫ"
+text = "#SHOOT_SPEED"
 
 [node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton2/TextMargin"]
 margin_left = 48.0
@@ -597,7 +597,7 @@ margin_bottom = 116.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
-text = "ВРЕМЯ БОНУСА"
+text = "#BONUS_TIME"
 
 [node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton3/TextMargin"]
 margin_left = 48.0
@@ -675,7 +675,7 @@ margin_bottom = 116.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
-text = "ШАНС БОНУСА"
+text = "#BONUS_CHANCE"
 
 [node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton4/TextMargin"]
 margin_left = 48.0
@@ -746,7 +746,7 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 3 )
 custom_styles/normal = SubResource( 3 )
 enabled_focus_mode = 0
-text = "ИГРАТЬ"
+text = "#PLAY"
 icon_align = 1
 script = ExtResource( 12 )
 focus_scale = 1.025
@@ -770,7 +770,7 @@ anchor_bottom = 1.0
 margin_bottom = -20.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 17 )
-text = "КУПИТЬ"
+text = "#BUY"
 align = 1
 valign = 1
 

@@ -13,10 +13,12 @@ func _ready() -> void:
 
 func _pressed() -> void:
 	if Global.lang:
+		TranslationServer.set_locale('ru')
 		Global.lang = 0
+		self.icon = lang_icons[Global.lang]
 	else:
+		TranslationServer.set_locale('en')
 		Global.lang = 1
+		self.icon = lang_icons[Global.lang]
 
 	SDK.set_data('Lang', Global.lang, true)
-
-	get_tree().change_scene("res://scenes/interfaces/Main.tscn")

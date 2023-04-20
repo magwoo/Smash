@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scenes/interfaces/SettingsBackButton.gd" type="Script" id=1]
 [ext_resource path="res://scenes/interfaces/EffectsButton.gd" type="Script" id=2]
-[ext_resource path="res://resources/images/SettingsLogo.svg" type="Texture" id=3]
 [ext_resource path="res://resources/images/LanguageIcon.svg" type="Texture" id=4]
 [ext_resource path="res://resources/images/BackIcon.svg" type="Texture" id=5]
 [ext_resource path="res://resources/images/EffectsIcon.svg" type="Texture" id=6]
@@ -13,6 +12,11 @@
 [ext_resource path="res://scenes/interfaces/Leaderboard.gd" type="Script" id=11]
 [ext_resource path="res://scenes/interfaces/SoundButton.gd" type="Script" id=12]
 [ext_resource path="res://scenes/interfaces/ChangeLang.gd" type="Script" id=13]
+
+[sub_resource type="DynamicFont" id=19]
+size = 84
+use_filter = true
+font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
@@ -65,26 +69,29 @@ margin_right = 656.0
 margin_bottom = 1152.0
 custom_constants/separation = 32
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer"]
-margin_left = 16.0
-margin_right = 576.0
-margin_bottom = 79.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource( 3 )
+[node name="Desc" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_right = 592.0
+margin_bottom = 100.0
+mouse_filter = 1
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_fonts/font = SubResource( 19 )
+text = "#SETTINGS"
+align = 1
+valign = 2
 
 [node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer"]
-margin_top = 111.0
+margin_top = 132.0
 margin_right = 592.0
-margin_bottom = 207.0
+margin_bottom = 228.0
 rect_min_size = Vector2( 0, 96 )
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 margin_left = 40.0
-margin_top = 239.0
+margin_top = 260.0
 margin_right = 552.0
-margin_bottom = 479.0
+margin_bottom = 500.0
 size_flags_horizontal = 4
 custom_constants/separation = 32
 
@@ -118,7 +125,7 @@ mouse_filter = 1
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 custom_fonts/font = SubResource( 18 )
-text = "ЗВУК"
+text = "#SOUND"
 align = 1
 valign = 2
 
@@ -153,15 +160,15 @@ mouse_filter = 1
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 custom_fonts/font = SubResource( 18 )
-text = "ЯЗЫК"
+text = "#LANG"
 align = 1
 valign = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 margin_left = 40.0
-margin_top = 511.0
+margin_top = 532.0
 margin_right = 552.0
-margin_bottom = 751.0
+margin_bottom = 772.0
 size_flags_horizontal = 4
 custom_constants/separation = 32
 
@@ -195,7 +202,7 @@ mouse_filter = 1
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 custom_fonts/font = SubResource( 18 )
-text = "ЭФФЕКТЫ"
+text = "#EFFECTS"
 align = 1
 valign = 2
 
@@ -230,15 +237,15 @@ mouse_filter = 1
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 custom_fonts/font = SubResource( 18 )
-text = "ТОП"
+text = "#TOP"
 align = 1
 valign = 2
 
 [node name="ScaledButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 margin_left = 176.0
-margin_top = 783.0
+margin_top = 804.0
 margin_right = 416.0
-margin_bottom = 1023.0
+margin_bottom = 1044.0
 rect_min_size = Vector2( 240, 240 )
 focus_mode = 0
 mouse_filter = 1
@@ -267,6 +274,6 @@ mouse_filter = 1
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 custom_fonts/font = SubResource( 18 )
-text = "НАЗАД"
+text = "#BACK"
 align = 1
 valign = 2
