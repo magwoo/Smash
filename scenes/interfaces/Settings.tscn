@@ -110,6 +110,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 8 )
 icon_align = 1
 script = ExtResource( 12 )
+angle_mult = 8.0
 lang_tag = "#SOUND"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/ScaledButton"]
@@ -145,6 +146,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 4 )
 icon_align = 1
 script = ExtResource( 13 )
+angle_mult = 8.0
 lang_tag = "#LANG"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/ScaledButton2"]
@@ -187,6 +189,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 6 )
 icon_align = 1
 script = ExtResource( 2 )
+angle_mult = 8.0
 lang_tag = "#EFFECTS"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2/ScaledButton"]
@@ -222,6 +225,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 7 )
 icon_align = 1
 script = ExtResource( 11 )
+angle_mult = 8.0
 lang_tag = "#TOP"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2/ScaledButton2"]
@@ -259,6 +263,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 5 )
 icon_align = 1
 script = ExtResource( 1 )
+angle_mult = 8.0
 lang_tag = "#BACK"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/ScaledButton"]
