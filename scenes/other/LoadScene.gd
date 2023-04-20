@@ -8,11 +8,10 @@ onready var logo: Sprite = $Logo
 
 var load_progress: float = 0.0
 var load_value: float = 0.0
-var _temp_viewport_rect: Vector2 = Vector2()
 
 
 func _ready() -> void:
-	get_tree().connect('screen_resized', self, 'update_viewport')
+	self.get_tree().connect('screen_resized', self, 'update_viewport')
 
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(5.0, 20.0))
@@ -28,7 +27,7 @@ func _ready() -> void:
 	yield(get_tree().create_timer(0.5), 'timeout')
 	load_progress += int(rand_range(0.0, 20.0))
 
-	while !SDK.is_ready(): yield(get_tree().create_timer(0.1), 'timeout')
+	while !SDK.player.is_ready(): yield(self.get_tree().create_timer(0.1), 'timeout')
 	load_progress += 100.0 - load_progress
 
 	yield(get_tree().create_timer(0.5), 'timeout')

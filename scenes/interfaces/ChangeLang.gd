@@ -21,4 +21,4 @@ func _pressed() -> void:
 		Global.lang = 1
 		self.icon = lang_icons[Global.lang]
 
-	SDK.set_data('Lang', Global.lang, true)
+	SDK.player.set_data('Lang', Global.lang, true)

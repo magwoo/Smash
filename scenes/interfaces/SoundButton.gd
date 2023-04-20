@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func _pressed() -> void:
 	Global.sounds = !Global.sounds
-	SDK.set_bool_data('Sounds', Global.sounds, true)
+	SDK.player.set_data('Sounds', Global.sounds, true)
 	self.icon = icons[int(Global.sounds)]

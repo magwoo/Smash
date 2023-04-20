@@ -355,6 +355,7 @@ flat = true
 script = ExtResource( 1 )
 focus_scale = 1.15
 press_scale = 0.95
+angle_mult = 0.0
 
 [node name="PlayerPreview" type="TextureRect" parent="MainMargin/MainVBox/Player" groups=["player_icon"]]
 modulate = Color( 1, 1, 1, 0 )
@@ -379,6 +380,7 @@ icon_align = 2
 script = ExtResource( 1 )
 focus_scale = 1.15
 press_scale = 0.95
+angle_mult = 0.0
 
 [node name="Upgrade" type="MarginContainer" parent="MainMargin/MainVBox"]
 margin_top = 500.0

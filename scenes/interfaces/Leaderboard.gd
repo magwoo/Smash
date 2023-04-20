@@ -5,4 +5,4 @@ func _pressed() -> void:
 	if OS.has_feature('editor'):
 		Global.add_balance(10000, true)
 		return
-	SDK.open_leaderboard('HighScore', 25)
+	SDK.leaderboard.open_by_tag('HighScore', 25)

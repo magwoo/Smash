@@ -53,27 +53,6 @@ var player_dic: Dictionary = {
 	}
 }
 
-var _lang_dic: Dictionary = {
-	'#PLAY': ['ИГРАТЬ', 'PLAY'],
-	'#DAMAGE': ['УРОН', 'DAMAGE'],
-	'#SHOOT_SPEED': ['ТЕМП СТРЕЛЬБЫ', 'SHOOT SPEED'],
-	'#BONUS_TIME': ['ВРЕМЯ БОНУСА', 'BONUS TIME'],
-	'#BONUS_CHANCE': ['ШАНС БОНУСА', 'BONUS CHANCE'],
-	'#BUY': ['КУПИТЬ', 'BUY'],
-	'#LEVEL': ['УРОВЕНЬ', 'LEVEL'],
-	'#SOUND': ['ЗВУКИ', 'SOUNDS'],
-	'#LANG': ['ЯЗЫК', 'LANG'],
-	'#EFFECTS': ['ЭФФЕКТЫ', 'EFFECTS'],
-	'#TOP': ['ТОП', 'TOP'],
-	'#BACK': ['НАЗАД', 'BACK'],
-	'#FREE': ['БЕСПЛАТНО', 'FREE'],
-	'#VIDEO_TOP': ['ПРОКАЧКА ЗА ВИДЕО', 'PUMPING FOR VIDEO'],
-	'#VIDEO_DISC': [
-		'получи один уровень прокачки за просмотр видео рекламы',
-		'get a level boost for watching video ads'
-	]
-}
-
 var sound_packets: Dictionary = {
 	'shoot': load('res://resources/sounds/ShootSound.wav'),
 	'tap': load('res://resources/sounds/TapSound.wav')
@@ -83,33 +62,30 @@ var sound_packets: Dictionary = {
 func _ready() -> void:
 	self.pause_mode = Node.PAUSE_MODE_PROCESS
 
-	SDK.connect('cloud_ready', self, '_cloud_ready')
+	SDK.player.connect('player_ready', self, '_player_ready')
 
 	randomize()
 
 
-func translate(tag: String) -> String:
-	assert(_lang_dic.has(tag), tag + ' missing')
-	return _lang_dic[tag][lang]
-
-
-func _cloud_ready() -> void:
+func _player_ready() -> void:
 	yield(get_tree().create_timer(0.05), 'timeout')
 
-	if SDK.get_data('Lang') == -1: lang = SDK.get_language() != 'ru'
-	else: lang = SDK.get_data('Lang')
+	if SDK.player.get_data('Lang', -1) == -1: lang = SDK.player.get_language() != 'ru'
+	else: lang = SDK.player.get_data('Lang', -1)
+	if lang: TranslationServer.set_locale('en')
+	else: TranslationServer.set_locale('ru')
 
-	set_balance(SDK.get_data('Balance'))
-	set_high_score(SDK.get_data('HighScore'))
+	set_balance(SDK.player.get_data('Balance', balance))
+	set_high_score(SDK.player.get_data('HighScore', high_score))
 
-	sounds = SDK.get_bool_data('Sounds')
-	effects = SDK.get_bool_data('Effects')
+	sounds = SDK.player.get_data('Sounds', sounds)
+	effects = SDK.player.get_data('Effects', effects)
 
 	upgrades = [
-		SDK.get_data('Upgrade1'),
-		SDK.get_data('Upgrade2'),
-		SDK.get_data('Upgrade3'),
-		SDK.get_data('Upgrade4')
+		SDK.player.get_data('Upgrade1', 1),
+		SDK.player.get_data('Upgrade2', 1),
+		SDK.player.get_data('Upgrade3', 1),
+		SDK.player.get_data('Upgrade4', 1)
 	]
 
 
@@ -140,42 +116,42 @@ func toggle_game() -> void:
 
 func set_balance(value: int, sync_after_set: bool = false) -> void:
 	balance = max(0, value)
-	SDK.set_data('Balance', balance)
+	SDK.player.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
 
 	assert(value >= 0, 'set balance < 0')
 
-	if sync_after_set: SDK.sync_data()
+	if sync_after_set: SDK.player.sync_data()
 
 
 func add_balance(amount: int, sync_after_add: bool = false) -> void:
 	balance += max(0, amount)
-	SDK.set_data('Balance', balance)
+	SDK.player.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
 
 	assert(amount >= 0, 'add balance < 0')
 
-	if sync_after_add: SDK.sync_data()
+	if sync_after_add: SDK.player.sync_data()
 
 
 func reduce_balance(amount: int, sync_after_reduce: bool = false) -> void:
 	balance -= max(0, amount)
-	SDK.set_data('Balance', balance)
+	SDK.player.set_data('Balance', balance)
 	emit_signal('balance_changed', balance)
 
 	assert(amount >= 0, 'reduce balance < 0')
 
-	if sync_after_reduce: SDK.sync_data()
+	if sync_after_reduce: SDK.player.sync_data()
 
 
 func set_high_score(value: int, sync_after_set: bool = false) -> void:
 	high_score = max(0, value)
-	SDK.set_data('HighScore', high_score)
+	SDK.player.set_data('HighScore', high_score)
 	emit_signal('high_score_changed', high_score)
 
 	assert(value >= 0, 'set high score < 0')
 
-	if sync_after_set: SDK.sync_data()
+	if sync_after_set: SDK.player.sync_data()
 
 
 func cut_number(number: float) -> String:

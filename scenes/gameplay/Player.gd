@@ -101,7 +101,7 @@ func area_entered(area: Area2D) -> void:
 			Global.set_high_score(tree.scores, true)
 		Global.add_balance(tree.scores, true)
 
-		SDK.show_fullscreen_ad()
+		SDK.ads.show_fullscreen()
 
 		Global.is_game = false
 		self.visible = false
