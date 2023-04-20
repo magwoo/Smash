@@ -30,7 +30,6 @@ export var name_tag: String
 
 
 func _ready() -> void:
-	name_text.text = Global.translate(name_tag)
 	style = default_style.duplicate()
 	bar.set('custom_styles/fg', style)
 	target_color = self.modulate

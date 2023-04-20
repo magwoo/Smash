@@ -440,7 +440,7 @@ margin_bottom = 116.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 custom_fonts/font = SubResource( 5 )
-text = "УРОН"
+text = "#DAMAGE"
 
 [node name="Level" type="Label" parent="MainMargin/MainVBox/Upgrade/UpgradeGrid/UpgradeButton1/TextMargin"]
 margin_left = 48.0
