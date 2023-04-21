@@ -22,9 +22,10 @@ func _ready() -> void:
 	self.connect('button_up', self, '_unpressed')
 
 	tween.name = 'TweenAnimator'
+	self.keep_pressed_outside = true
 	self.add_child(tween)
 
-	self.rect_pivot_offset = self.rect_size / 2
+	self.rect_pivot_offset = self.rect_size / 2.0
 	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 
@@ -52,12 +53,15 @@ func animate_angle(target_angle: float = 0.0) -> void:
 
 
 func _button_down() -> void:
+	animate_angle(rand_range(-angle_mult, angle_mult))
 	animate_scale(Vector2(press_scale, press_scale))
 
 
 func _unpressed() -> void:
-	if focused: _focused()
-	else: animate_scale(Vector2(1.0, 1.0))
+	if focused:
+		animate_scale(Vector2(focus_scale, focus_scale))
+		animate_angle()
+	else: _unfocused()
 
 
 func _focused() -> void:
@@ -67,7 +71,7 @@ func _focused() -> void:
 
 
 func _unfocused() -> void:
-	animate_angle(0.0)
+	animate_angle()
 	animate_scale(Vector2(1.0, 1.0))
 	focused = false
 

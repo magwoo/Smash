@@ -244,6 +244,7 @@ $GODOT_HEAD_INCLUDE
 	<script>
 		window.onGPInit = async (SDK) => {
 			window.SDK = SDK;
+			SDK.ads.showPreloader();
 			await SDK.player.ready;
 		}
 	</script>
